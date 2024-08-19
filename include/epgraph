@@ -3,10 +3,11 @@
 #include <core_variable.hpp>
 #include <ops_add.hpp>
 #include <ops_sub.hpp>
+#include <ops_mul.hpp>
+#include <ops_div.hpp>
+#include <ops_sin.hpp>
 #include <ops_cos.hpp>
 #include <ops_exp.hpp>
-#include <ops_mul.hpp>
-#include <ops_sin.hpp>
 
 namespace epg {
 

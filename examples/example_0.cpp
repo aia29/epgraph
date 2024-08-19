@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
 
   Variable y = new_variable(2.0);
   Variable x = new_variable(3.0);
-  Variable z = x * (x + y) + y * y - (x * x);
+  Variable z = x * (x + y) + y * y - (x / y);
 
   zero_grad(z);
   eval(z);
