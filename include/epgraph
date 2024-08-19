@@ -1,0 +1,22 @@
+#pragma once
+
+#include <core_variable.hpp>
+#include <ops_add.hpp>
+#include <ops_cos.hpp>
+#include <ops_exp.hpp>
+#include <ops_mul.hpp>
+#include <ops_sin.hpp>
+
+namespace epg {
+
+Variable new_variable(const float val) {
+  Variable var = std::make_shared<_Variable>(val);
+  return var;
+}
+
+void eval(const Variable var) { var->eval(); }
+
+void diff(const Variable var) { var->diff(1); }
+
+void zero_grad(const Variable var) { var->zero_grad(); }
+} // namespace epg
