@@ -34,5 +34,7 @@ Variable div(const Variable x, const Variable y) {
 }
 
 Variable operator/(const Variable x, const Variable y) { return div(x, y); }
+Variable operator/(const Variable x, const float y) { return div(x, new_const(y)); }
+Variable operator/(const float x, const Variable y) { return div(new_const(x), y); }
 
 } // namespace epg

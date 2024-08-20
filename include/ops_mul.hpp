@@ -34,5 +34,7 @@ Variable mul(const Variable x, const Variable y) {
 }
 
 Variable operator*(const Variable x, const Variable y) { return mul(x, y); }
+Variable operator*(const Variable x, const float y) { return mul(x, new_const(y)); }
+Variable operator*(const float x, const Variable y) { return mul(new_const(x), y); }
 
 } // namespace epg

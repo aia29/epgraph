@@ -33,5 +33,7 @@ Variable add(const Variable x, const Variable y) {
 }
 
 Variable operator+(const Variable x, const Variable y) { return add(x, y); }
+Variable operator+(const Variable x, const float y) { return add(x, new_const(y)); }
+Variable operator+(const float x, const Variable y) { return add(new_const(x), y); }
 
 } // namespace epg

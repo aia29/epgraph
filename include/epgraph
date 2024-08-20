@@ -11,14 +11,10 @@
 
 namespace epg {
 
-Variable new_variable(const float val) {
-  Variable var = std::make_shared<_Variable>(val);
-  return var;
-}
-
 void eval(const Variable var) { var->eval(); }
 
 void diff(const Variable var) { var->diff(1); }
 
 void zero_grad(const Variable var) { var->zero_grad(); }
+
 } // namespace epg

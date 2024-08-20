@@ -33,5 +33,7 @@ Variable sub(const Variable x, const Variable y) {
 }
 
 Variable operator-(const Variable x, const Variable y) { return sub(x, y); }
+Variable operator-(const Variable x, const float y) { return sub(x, new_const(y)); }
+Variable operator-(const float x, const Variable y) { return sub(new_const(x), y); }
 
 } // namespace epg
