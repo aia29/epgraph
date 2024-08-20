@@ -20,22 +20,22 @@ int main(int argc, char *argv[]) {
   using namespace epg;
 
   // Function to approximate:
-  Variable q = new_variable(0.0f);
+  Scalar q = new_variable(0.0f);
 
   // Weights:
-  Variable w0 = new_variable(0.1f);
-  Variable w1 = new_variable(0.1f);
-  Variable w2 = new_variable(0.1f);
-  Variable w3 = new_variable(0.1f);
+  Scalar w0 = new_variable(0.1f);
+  Scalar w1 = new_variable(0.1f);
+  Scalar w2 = new_variable(0.1f);
+  Scalar w3 = new_variable(0.1f);
 
   // Sample data:
-  Variable x = new_variable(0.0f);
+  Scalar x = new_variable(0.0f);
 
   // Polynomial approximation function
-  Variable f = (w0 + w1 * x + w2 * x * x + w3 * x * x * x);
+  Scalar f = (w0 + w1 * x + w2 * x * x + w3 * x * x * x);
 
   // Objective function:
-  Variable obj = (q - f) * (q - f);
+  Scalar obj = (q - f) * (q - f);
 
   float alpha = 0.001f;
 

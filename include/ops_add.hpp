@@ -4,10 +4,10 @@
 
 namespace epg {
 
-struct _Add : public _Variable {
-  Variable var1;
-  Variable var2;
-  _Add(const Variable var1_, const Variable var2_) {
+struct _Add : public _Scalar {
+  Scalar var1;
+  Scalar var2;
+  _Add(const Scalar var1_, const Scalar var2_) {
     var1 = var1_;
     var2 = var2_;
   }
@@ -27,13 +27,13 @@ struct _Add : public _Variable {
   }
 };
 
-Variable add(const Variable x, const Variable y) {
-  Variable var = std::make_shared<_Add>(x, y);
+Scalar add(const Scalar x, const Scalar y) {
+  Scalar var = std::make_shared<_Add>(x, y);
   return var;
 }
 
-Variable operator+(const Variable x, const Variable y) { return add(x, y); }
-Variable operator+(const Variable x, const float y) { return add(x, new_const(y)); }
-Variable operator+(const float x, const Variable y) { return add(new_const(x), y); }
+Scalar operator+(const Scalar x, const Scalar y) { return add(x, y); }
+Scalar operator+(const Scalar x, const float y) { return add(x, new_const(y)); }
+Scalar operator+(const float x, const Scalar y) { return add(new_const(x), y); }
 
 } // namespace epg

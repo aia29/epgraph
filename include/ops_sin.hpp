@@ -5,9 +5,9 @@
 
 namespace epg {
 
-struct _Sin : public _Variable {
-  Variable var;
-  _Sin(const Variable var_) { var = var_; }
+struct _Sin : public _Scalar {
+  Scalar var;
+  _Sin(const Scalar var_) { var = var_; }
   void zero_grad() {
     grad = 0.0f;
     var->zero_grad();
@@ -19,8 +19,8 @@ struct _Sin : public _Variable {
   void diff(const float seed) { var->diff(std::cos(var->value) * seed); }
 };
 
-Variable sin(const Variable x) {
-  Variable var = std::make_shared<_Sin>(x);
+Scalar sin(const Scalar x) {
+  Scalar var = std::make_shared<_Sin>(x);
   return var;
 }
 

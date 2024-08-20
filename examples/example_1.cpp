@@ -8,9 +8,9 @@
 int main(int argc, char *argv[]) {
   using namespace epg;
 
-  Variable x = new_variable(3.0);
-  Variable y = new_variable(2.0);
-  Variable f = x * x - y;
+  Scalar x = new_variable(3.0);
+  Scalar y = new_variable(2.0);
+  Scalar f = x * x - y;
 
   for (int i = 0; i < 6; i++) {
     zero_grad(f);

@@ -13,10 +13,10 @@ int main(int argc, char *argv[]) {
   using namespace epg;
 
   // Main variable:
-  Variable x = new_variable();
+  Scalar x = new_variable();
 
   // Equation:
-  Variable f = exp(-1.0f * x) * sin(5.0f * x) - 0.5f;
+  Scalar f = exp(-1.0f * x) * sin(5.0f * x) - 0.5f;
 
   // Find its roots in range [xmin, xmax]
   std::set<float> roots;
