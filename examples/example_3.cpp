@@ -35,12 +35,13 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  std::cout << "Roots:" << std::endl;
+  std::cout << "Numerical solution:" << std::endl;
   for (const float root : roots) {
     std::cout << root << std::endl;
   }
 
-  std::cout << "Some roots are:" << std::endl;
+  std::cout << std::endl;
+  std::cout << "Roots from WolframAlpha:" << std::endl;
   std::cout << " -3.76760038832412 " << std::endl;
   std::cout << " -3.14589582169776 " << std::endl;
   std::cout << " -2.50510515065551 " << std::endl;
