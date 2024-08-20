@@ -1,4 +1,4 @@
-## EPGraph: An easy-peasy graph automatic differentiation library based on reverse-mode accumulation of computational graph.
+## EPGraph: An easy-peasy automatic differentiation library based on reverse-mode accumulation of computational graph.
 
 ### NOTE: EPGraph is under development. Functionality can be limited and things may change over time.
 
