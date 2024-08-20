@@ -30,4 +30,6 @@
 *.exe
 *.out
 *.app
-run_example_*
+
+# Build paths
+examples/build/
