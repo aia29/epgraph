@@ -11,9 +11,9 @@ EPGraph can be used for variety of projects including but not limited to machine
 int main(int argc, char *argv[]) {
   using namespace epg;
 
-  Variable y = new_variable(2.0);
-  Variable x = new_variable(3.0);
-  Variable z = x * (x + y) + y * y;
+  Scalar y = new_variable(2.0);
+  Scalar x = new_variable(3.0);
+  Scalar z = x * (x + y) + y * y;
 
   eval(z);
   diff(z);
