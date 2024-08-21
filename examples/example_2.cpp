@@ -1,7 +1,5 @@
-#include <epgraph>
-#include <iostream>
-#include <cstdlib>
-
+//////////////////////////////////////////////////////////////
+//
 // This example demonstrates usage of EPGraph for
 // a polynomial regression problem via least squares.
 //
@@ -11,6 +9,12 @@
 //
 // The optimization problem would be:
 // minimize(f(x, w) - q(x))^2 w.r.t w[0:4].
+//
+//////////////////////////////////////////////////////////////
+
+#include <epgraph>
+#include <iostream>
+#include <cstdlib>
 
 float randu(const float a, const float b) {
   return (((float) rand()) / (RAND_MAX+1.0f)) * (b-a) + a;
@@ -20,16 +24,16 @@ int main(int argc, char *argv[]) {
   using namespace epg;
 
   // Function to approximate:
-  Scalar q = new_variable(0.0f);
+  Scalar q = make_variable(0.0f);
 
   // Weights:
-  Scalar w0 = new_variable(0.1f);
-  Scalar w1 = new_variable(0.1f);
-  Scalar w2 = new_variable(0.1f);
-  Scalar w3 = new_variable(0.1f);
+  Scalar w0 = make_variable(0.1f);
+  Scalar w1 = make_variable(0.1f);
+  Scalar w2 = make_variable(0.1f);
+  Scalar w3 = make_variable(0.1f);
 
   // Sample data:
-  Scalar x = new_variable(0.0f);
+  Scalar x = make_variable(0.0f);
 
   // Polynomial approximation function
   Scalar f = (w0 + w1 * x + w2 * x * x + w3 * x * x * x);
@@ -41,7 +45,7 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i < 1000000; i++) {
     x->value = randu(0.0f, M_PI);
-    q->value = sinf(x->value);
+    q->value = sinf(x->value) + randu(-0.01, 0.01);
 
     zero_grad(obj);
     eval(obj);

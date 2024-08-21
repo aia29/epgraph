@@ -1,15 +1,18 @@
-#include <epgraph>
-#include <iostream>
-
+///////////////////////////////////////////////////
+//
 // This example demonstrates usage of EPGraph for
 // calculation of sqrt(2) using Newton’s iterations
 // for f(x) = x*x – 2.
+///////////////////////////////////////////////////
+
+#include <epgraph>
+#include <iostream>
 
 int main(int argc, char *argv[]) {
   using namespace epg;
 
-  Scalar x = new_variable(3.0);
-  Scalar y = new_variable(2.0);
+  Scalar x = make_variable(3.0);
+  Scalar y = make_variable(2.0);
   Scalar f = x * x - y;
 
   for (int i = 0; i < 6; i++) {

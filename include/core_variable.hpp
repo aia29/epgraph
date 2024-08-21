@@ -40,12 +40,12 @@ Scalar new_const(const float val) {
   return var;
 }
 
-Scalar new_variable() {
+Scalar make_variable() {
   Scalar var = std::make_shared<_Scalar>();
   return var;
 }
 
-Scalar new_variable(const float val) {
+Scalar make_variable(const float val) {
   Scalar var = std::make_shared<_Scalar>(val);
   return var;
 }

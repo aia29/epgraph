@@ -1,11 +1,15 @@
+/////////////////////////////////////////////////
+//
+// This example demonstrates usage of EPGraph for
+// a non-linear algebraic equation:
+//   exp(-x) * sin(5*x) - 0.5 = 0
+//
+/////////////////////////////////////////////////
+
 #include <epgraph>
 #include <iostream>
 #include <set>
 #include <string>
-
-// This example demonstrates usage of EPGraph for
-// a non-linear algebraic equation:
-//   exp(-x) * sin(5*x) - 0.5 = 0
 
 float roundf(const float d) { return (round((int)(d * 10000.0))) / 10000.0; }
 
@@ -13,7 +17,7 @@ int main(int argc, char *argv[]) {
   using namespace epg;
 
   // Main variable:
-  Scalar x = new_variable();
+  Scalar x = make_variable();
 
   // Equation:
   Scalar f = exp(-1.0f * x) * sin(5.0f * x) - 0.5f;
