@@ -4,7 +4,8 @@ CXX := g++
 # Paths
 SRC_DIRS := ./
 BUILD_DIR := ./build/
-INCLUDE_DIRS := ../include/
+EIGEN_DIR := ./eigen-3.4.0
+INCLUDE_DIRS := ../include/ $(EIGEN_DIR)
 
 # Build flags
 INCLUDE_FLAGS := $(addprefix -I,$(INCLUDE_DIRS))
