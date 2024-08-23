@@ -33,3 +33,6 @@
 
 # Build paths
 examples/build/
+
+# Third party packages
+eigen-*
