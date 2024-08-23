@@ -9,7 +9,7 @@ INCLUDE_DIRS := ../include/ $(EIGEN_DIR)
 
 # Build flags
 INCLUDE_FLAGS := $(addprefix -I,$(INCLUDE_DIRS))
-CXXFLAGS := -O2 -std=c++20 $(INCLUDE_FLAGS)
+CXXFLAGS := -O2 -Wall -std=c++20 $(INCLUDE_FLAGS)
 
 # Prepare lists
 CXX_FILES := $(notdir $(shell find $(SRC_DIRS) -name "example_*.cpp"))

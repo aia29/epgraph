@@ -12,12 +12,12 @@
 //
 //////////////////////////////////////////////////////////////
 
+#include <cstdlib>
 #include <epgraph>
 #include <iostream>
-#include <cstdlib>
 
 float randu(const float a, const float b) {
-  return (((float) rand()) / (RAND_MAX+1.0f)) * (b-a) + a;
+  return (((float)rand()) / (RAND_MAX + 1.0f)) * (b - a) + a;
 }
 
 int main(int argc, char *argv[]) {
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 
   std::cout << std::endl;
   std::cout << "Accuracy check:" << std::endl;
-  for (int i = 0; i < 10; i++) {  
+  for (int i = 0; i < 10; i++) {
     x->value = randu(0.0f, M_PI);
     eval(f);
     std::cout << std::endl;
