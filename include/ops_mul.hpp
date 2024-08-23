@@ -34,7 +34,7 @@ Scalar mul(const Scalar x, const Scalar y) {
 }
 
 Scalar operator*(const Scalar x, const Scalar y) { return mul(x, y); }
-Scalar operator*(const Scalar x, const float y) { return mul(x, new_const(y)); }
-Scalar operator*(const float x, const Scalar y) { return mul(new_const(x), y); }
+Scalar operator*(const Scalar x, const float y) { return mul(x, make_const(y)); }
+Scalar operator*(const float x, const Scalar y) { return mul(make_const(x), y); }
 
 } // namespace epg

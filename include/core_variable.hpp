@@ -30,12 +30,12 @@ struct _Scalar {
 
 typedef std::shared_ptr<_Scalar> Scalar;
 
-Scalar new_const() {
+Scalar make_const() {
   Scalar var = std::make_shared<_Scalar>(true);
   return var;
 }
 
-Scalar new_const(const float val) {
+Scalar make_const(const float val) {
   Scalar var = std::make_shared<_Scalar>(val, true);
   return var;
 }
