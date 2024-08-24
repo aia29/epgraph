@@ -39,9 +39,10 @@ int main(int argc, char *argv[]) {
     Scalar y = make_variable(y0);
 
     Scalar F0 = (x - x0) - 0.5f * dt * (y + y0);
-    Scalar F1 = (y - y0) -
-                0.5f * dt * mu * (1.0f - 0.25f * (x + x0) * (x + x0)) * (y + y0) +
-                0.5f * dt * (x + x0);
+    Scalar F1 =
+        (y - y0) -
+        0.5f * dt * mu * (1.0f - 0.25f * (x + x0) * (x + x0)) * (y + y0) +
+        0.5f * dt * (x + x0);
 
     for (int i = 0; i < 8; i++) {
       // Evaluate the first equation
