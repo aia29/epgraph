@@ -1,12 +1,9 @@
 /////////////////////////////////////////////////
 //
 // This example demonstrates usage of EPGraph for
-// a non-linear ODE:
-//   dy/dt = y^2 - y^3, y(0)=y_0
-// using an implicit midpoint method
-//
-// The exact solution to the IVP is:
-//   (50/2501)*(sin(t) + 50*cos(t)) - (2500/2501)*exp(-50*t)
+// a Van der Pol equation:
+//   d^2x/dx^2 - mu*(1 -x^2)*dx/dt - x = 0
+// using an implicit midpoint method.
 //
 /////////////////////////////////////////////////
 
@@ -19,7 +16,7 @@ int main(int argc, char *argv[]) {
   using Eigen::MatrixXf;
   using Eigen::VectorXf;
 
-  const float dt = 0.25;
+  const float dt = 0.25f;
   const float mu = 3.125f;
 
   float t0 = 0.0f;
@@ -31,7 +28,7 @@ int main(int argc, char *argv[]) {
   VectorXf x_eigen(2);
   VectorXf F_eigen(2);
 
-  const int N = std::round(25 / dt);
+  const int N = std::round(25.0f / dt);
 
   std::ofstream file("van_der_pol.csv");
   file << "t,x,y" << std::endl;
@@ -41,10 +38,10 @@ int main(int argc, char *argv[]) {
     Scalar x = make_variable(x0);
     Scalar y = make_variable(y0);
 
-    Scalar F0 = (x - x0) - 0.5 * dt * (y + y0);
+    Scalar F0 = (x - x0) - 0.5f * dt * (y + y0);
     Scalar F1 = (y - y0) -
-                0.5 * dt * mu * (1.0f - 0.25 * (x + x0) * (x + x0)) * (y + y0) +
-                0.5 * dt * (x + x0);
+                0.5f * dt * mu * (1.0f - 0.25f * (x + x0) * (x + x0)) * (y + y0) +
+                0.5f * dt * (x + x0);
 
     for (int i = 0; i < 8; i++) {
       // Evaluate the first equation

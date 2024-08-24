@@ -29,7 +29,7 @@ endif
 BUILD_DIR:
 	$(shell mkdir -p $(BUILD_DIR))
 
-$(EXE_FILES):
+$(EXE_FILES): $(CXX_FILES)
 	$(CXX) $(CXXFLAGS) $(notdir $@).cpp -o $@
 
 clean:

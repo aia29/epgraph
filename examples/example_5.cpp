@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
   for (int n = 0; n < N; n++) {
     Scalar y = make_variable(y0);
-    Scalar F = (y - y0) / dt + 50 * (0.5 * (y + y0) - cos(t0 + 0.5 * dt));
+    Scalar F = (y - y0) / dt + 50.0f * (0.5 * (y + y0) - cos(t0 + 0.5 * dt));
 
     for (int i = 0; i < 8; i++) {
       zero_grad(F);

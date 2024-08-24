@@ -8,6 +8,9 @@
 #include <ops_sin.hpp>
 #include <ops_cos.hpp>
 #include <ops_exp.hpp>
+#include <ops_pow.hpp>
+#include <ops_log.hpp>
+#include <ops_sqrt.hpp>
 
 namespace epg {
 

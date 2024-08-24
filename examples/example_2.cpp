@@ -4,7 +4,7 @@
 // a polynomial regression problem via least squares.
 //
 // Consider a third-order polynomial:
-// f(x) = w0 + w1 * x + w2 * x * x + w3 * x * x * x.
+// f(x) = w0 + w1 * x + w2 * x * x + w3 * pow(x, 3).
 // To approximate a function q(x) = sin(x), where x in [0, pi]
 //
 // The optimization problem would be:
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
   Scalar x = make_variable(0.0f);
 
   // Polynomial approximation function
-  Scalar f = (w0 + w1 * x + w2 * x * x + w3 * x * x * x);
+  Scalar f = (w0 + w1 * x + w2 * pow(x, 2.0f) + w3 * pow(x, 3.0f));
 
   // Objective function:
   Scalar obj = (q - f) * (q - f);

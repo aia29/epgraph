@@ -24,7 +24,7 @@ struct _Div : public _Scalar {
   }
   void diff(const float seed) {
     var1->diff(seed / var2->value);
-    var2->diff( -seed * var1->value / (var2->value * var2->value));
+    var2->diff(-seed * var1->value / (var2->value * var2->value));
   }
 };
 
@@ -34,7 +34,11 @@ Scalar div(const Scalar x, const Scalar y) {
 }
 
 Scalar operator/(const Scalar x, const Scalar y) { return div(x, y); }
-Scalar operator/(const Scalar x, const float y) { return div(x, make_const(y)); }
-Scalar operator/(const float x, const Scalar y) { return div(make_const(x), y); }
+Scalar operator/(const Scalar x, const float y) {
+  return div(x, make_const(y));
+}
+Scalar operator/(const float x, const Scalar y) {
+  return div(make_const(x), y);
+}
 
 } // namespace epg

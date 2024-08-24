@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
   Scalar y = make_variable(1.0f);
 
   // Equations:
-  Scalar f0 = (x * x - x) * y * y * y - 1.0f;
-  Scalar f1 = x * x * x - x * y * y * y - 4.0f;
+  Scalar f0 = (pow(x, 2.0f) - x) * pow(y, 3.0f) - 1.0f;
+  Scalar f1 = pow(x, 3.0f) - x * pow(y, 3.0f) - 4.0f;
 
   // Temporary Eigen variables
   MatrixXf J_eigen(2, 2);

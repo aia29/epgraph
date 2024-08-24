@@ -11,8 +11,8 @@
 int main(int argc, char *argv[]) {
   using namespace epg;
 
-  Scalar x = make_variable(3.0);
-  Scalar y = make_variable(2.0);
+  Scalar x = make_variable(3.0f);
+  Scalar y = make_variable(2.0f);
   Scalar f = x * x - y;
 
   for (int i = 0; i < 6; i++) {

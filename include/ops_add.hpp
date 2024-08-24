@@ -33,7 +33,11 @@ Scalar add(const Scalar x, const Scalar y) {
 }
 
 Scalar operator+(const Scalar x, const Scalar y) { return add(x, y); }
-Scalar operator+(const Scalar x, const float y) { return add(x, make_const(y)); }
-Scalar operator+(const float x, const Scalar y) { return add(make_const(x), y); }
+Scalar operator+(const Scalar x, const float y) {
+  return add(x, make_const(y));
+}
+Scalar operator+(const float x, const Scalar y) {
+  return add(make_const(x), y);
+}
 
 } // namespace epg
