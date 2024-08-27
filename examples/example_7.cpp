@@ -12,6 +12,24 @@
 #include <fstream>
 #include <iostream>
 
+void solve_tridiagonal(const int X, float *x,
+                       const float *a, const float *b,
+                       const float *c, float *scratch) {
+    scratch[0] = c[0] / b[0];
+    x[0] = x[0] / b[0];
+
+    for (int ix = 1; ix < X; ix++) {
+        if (ix < X-1){
+        scratch[ix] = c[ix] / (b[ix] - a[ix] * scratch[ix - 1]);
+        }
+        x[ix] = (x[ix] - a[ix] * x[ix - 1]) / (b[ix] - a[ix] * scratch[ix - 1]);
+    }
+
+    for (int ix = X - 2; ix >= 0; ix--)
+        x[ix] -= scratch[ix] * x[ix + 1];
+}
+
+
 void solve_step(std::vector<epg::Scalar> &u, std::vector<epg::Scalar> &uold,
                 const float mu, const float dt, const float dx) {
   using Eigen::MatrixXf;
@@ -19,10 +37,13 @@ void solve_step(std::vector<epg::Scalar> &u, std::vector<epg::Scalar> &uold,
 
   const int N = u.size() - 2;
 
-  MatrixXf J_eigen(N, N);
+  VectorXf a_eigen = VectorXf::Zero(N);
+  VectorXf b_eigen = VectorXf::Zero(N);
+  VectorXf c_eigen = VectorXf::Zero(N);
+  VectorXf scratch_eigen = VectorXf::Zero(N);
+
   VectorXf u_eigen(N);
   VectorXf F_eigen(N);
-  VectorXf Delta_eigen(N);
 
   const float dx_inv = 1.0f / dx;
   const float dx2_inv = 1.0f / dx / dx;
@@ -46,18 +67,21 @@ void solve_step(std::vector<epg::Scalar> &u, std::vector<epg::Scalar> &uold,
 
       // And populate its Jacobian
       if (i > 1) {
-        J_eigen(i - 1, i - 2) = u[i - 1]->grad;
+        a_eigen(i - 1) = u[i - 1]->grad;
       }
-      J_eigen(i - 1, i - 1) = u[i]->grad;
+      b_eigen(i - 1) = u[i]->grad;
       if (i < N) {
-        J_eigen(i - 1, i) = u[i + 1]->grad;
+        c_eigen(i) = u[i + 1]->grad;
       }
       F_eigen(i - 1) = EQ->value;
       u_eigen(i - 1) = u[i]->value;
     }
 
-    Delta_eigen = J_eigen.completeOrthogonalDecomposition().solve(F_eigen);
-    u_eigen = u_eigen - Delta_eigen;
+    solve_tridiagonal(N, F_eigen.data(),
+                      a_eigen.data(), b_eigen.data(),
+                      c_eigen.data(), scratch_eigen.data());
+
+    u_eigen = u_eigen - F_eigen;
   }
   for (int i = 1; i < u.size() - 1; i++) {
     u[i]->value = u_eigen(i - 1);
