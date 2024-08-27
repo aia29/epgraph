@@ -7,6 +7,7 @@
 #include <ops_div.hpp>
 #include <ops_sin.hpp>
 #include <ops_cos.hpp>
+#include <ops_abs.hpp>
 #include <ops_exp.hpp>
 #include <ops_pow.hpp>
 #include <ops_log.hpp>
