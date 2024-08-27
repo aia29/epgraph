@@ -33,5 +33,18 @@ int main(int argc, char *argv[]) {
   std::cout << "∂g/∂x = " << x->grad << std::endl;
   std::cout << "∂g/∂y = " << y->grad << std::endl;
 
+  Scalar q = abs(x) + abs(y);
+  x->value = -M_PI;
+  y->value = 2.0f;
+  zero_grad(q);
+  eval(q);
+  diff(q);
+
+  std::cout << std::endl;
+  std::cout << "q = abs(x) + abs(y)" << std::endl;
+  std::cout << "q(" << x->value << ", " << y->value << ") = " << q->value << std::endl;
+  std::cout << "∂q/∂x = " << x->grad << std::endl;
+  std::cout << "∂q/∂y = " << y->grad << std::endl;
+
   return 0;
 }

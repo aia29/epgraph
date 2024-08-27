@@ -35,4 +35,5 @@ $(EXE_FILES): $(CXX_FILES)
 clean:
 	rm -f $(EXE_FILES)
 	rm -rf $(BUILD_DIR)
-	rm -f van_der_pol.csv
+	rm -f ./van_der_pol.csv
+	rm -f ./burgers.csv
