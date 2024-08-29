@@ -12,6 +12,8 @@
 #include <ops_pow.hpp>
 #include <ops_log.hpp>
 #include <ops_sqrt.hpp>
+#include <ops_sigmoid.hpp>
+#include <ops_tanh.hpp>
 
 namespace epg {
 
