@@ -65,7 +65,7 @@ void solve_step(std::vector<epg::Scalar> &u, std::vector<epg::Scalar> &uold,
       eval(EQ);
       diff(EQ);
 
-      // And populate its Jacobian
+      // And populate its tridiagonal Jacobian
       if (i > 1) {
         a_eigen(i - 1) = u[i - 1]->grad;
       }
@@ -91,14 +91,15 @@ void solve_step(std::vector<epg::Scalar> &u, std::vector<epg::Scalar> &uold,
 int main(int argc, char *argv[]) {
 
   const int Nt = 32;
-  const int Nx = 101;
+  const int Nx = 1001;
   const int save_every = 8;
   const float dx = 2.0f * M_PI / (Nx - 1.0f);
   const float dt = 0.25f;
-  float mu = 0.0625f;
+  float mu = 0.025f;
 
   std::cout << "dt = " << dt << std::endl;
   std::cout << "dx = " << dx << std::endl;
+  std::cout << "mu = " << mu << std::endl;
   std::cout << "mu dt/dx^2 = " << mu * dt / dx / dx << std::endl;
 
   std::vector<epg::Scalar> u(Nx);
