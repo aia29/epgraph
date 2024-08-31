@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   Scalar x = make_variable(1.0f);
   Scalar y = make_variable(1.0f);
 
-  Scalar f0 = exp(0.0f - exp(0.0f - (x + y))) - y * (1.0f + x * x);
+  Scalar f0 = exp(-exp(-(x + y))) - y * (1.0f + x * x);
   Scalar f1 = x * cos(y) + y * sin(x) - 0.5f;
 
   // Temporary Eigen variables

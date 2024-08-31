@@ -39,5 +39,8 @@ Scalar operator-(const Scalar x, const float y) {
 Scalar operator-(const float x, const Scalar y) {
   return sub(make_const(x), y);
 }
+Scalar operator-(const Scalar y) {
+  return sub(make_const(0.0f), y);
+}
 
 } // namespace epg
