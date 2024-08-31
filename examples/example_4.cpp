@@ -2,10 +2,10 @@
 //
 // This example demonstrates usage of EPGraph for
 // a non-linear system:
-//   x1^2*x2^3 - x1*x2^3 - 1 = 0
-//   x1^3 - x1*x2^3 - 4 = 0
-// According to https://www.glynholton.com/solutions/exercise-solution-2-21/
-// the solution is (1.74762, 0.91472)
+//   exp(-exp(-(x+y))) = y*(1+x^2)
+//   x*cos(y) + y*sin(x) = 0.5
+// According to https://www.mathworks.com/help/optim/ug/fsolve.html
+// the solution is (0.3532    0.6061)
 //
 /////////////////////////////////////////////////
 
@@ -22,9 +22,8 @@ int main(int argc, char *argv[]) {
   Scalar x = make_variable(1.0f);
   Scalar y = make_variable(1.0f);
 
-  // Equations:
-  Scalar f0 = (pow(x, 2.0f) - x) * pow(y, 3.0f) - 1.0f;
-  Scalar f1 = pow(x, 3.0f) - x * pow(y, 3.0f) - 4.0f;
+  Scalar f0 = exp(0.0f - exp(0.0f - (x + y))) - y * (1.0f + x * x);
+  Scalar f1 = x * cos(y) + y * sin(x) - 0.5f;
 
   // Temporary Eigen variables
   MatrixXf J_eigen(2, 2);
@@ -57,6 +56,8 @@ int main(int argc, char *argv[]) {
     x_eigen(0) = x->value;
     x_eigen(1) = y->value;
 
+    // Eigen's inverse for 2x2 matrix is efficient 
+    // enough to be usef here as is:
     x_eigen = x_eigen - J_eigen.inverse() * F_eigen;
 
     // Copy the intermediate solution back
