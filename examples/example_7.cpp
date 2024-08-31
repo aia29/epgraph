@@ -50,16 +50,16 @@ void solve_step(std::vector<epg::Scalar> &u, std::vector<epg::Scalar> &uold,
 
   for (int iter = 0; iter < 8; iter++) {
     for (int i = 1; i < u.size() - 1; i++) {
+
+      // modpoint values
+      epg::Scalar up = 0.5f*(u[i + 1] + uold[i + 1]->value);
+      epg::Scalar uc = 0.5f*(u[i] + uold[i]->value);
+      epg::Scalar um = 0.5f*(u[i - 1] + uold[i - 1]->value);
+
       epg::Scalar EQ =
-          (u[i] - uold[i]->value) / dt +
-          0.5 * (u[i] + uold[i]->value) * 0.5 *
-              (0.5 * (u[i + 1] - u[i - 1]) * dx_inv +
-               0.5 * (uold[i + 1]->value - uold[i - 1]->value) * dx_inv) -
-          mu * (0.5 * (u[i + 1] - 2.0 * u[i] + u[i - 1]) * dx2_inv +
-                0.5 *
-                    (uold[i + 1]->value - 2.0 * uold[i]->value +
-                     uold[i - 1]->value) *
-                    dx2_inv);
+          (u[i] - uold[i]->value) / dt
+          + uc * 0.5 * (up - um) * dx_inv
+          - mu * (up - 2.0 * uc + um) * dx2_inv;
 
       zero_grad(EQ);
       eval(EQ);

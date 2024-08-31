@@ -38,11 +38,12 @@ int main(int argc, char *argv[]) {
     Scalar x = make_variable(x0);
     Scalar y = make_variable(y0);
 
-    Scalar F0 = (x - x0) - 0.5f * dt * (y + y0);
-    Scalar F1 =
-        (y - y0) -
-        0.5f * dt * mu * (1.0f - 0.25f * (x + x0) * (x + x0)) * (y + y0) +
-        0.5f * dt * (x + x0);
+    // modpoint values
+    Scalar xm = 0.5f*(x + x0);
+    Scalar ym = 0.5f*(y + y0);
+
+    Scalar F0 = (x - x0) - dt * ym;
+    Scalar F1 = (y - y0) - dt * (mu * (1.0f - xm * xm) * ym - xm);
 
     for (int i = 0; i < 8; i++) {
       // Evaluate the first equation
