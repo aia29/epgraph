@@ -20,7 +20,7 @@ float randu(const float a, const float b) {
   return (((float)rand()) / (RAND_MAX + 1.0f)) * (b - a) + a;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace epg;
 
   // Function to approximate:

@@ -8,7 +8,7 @@
 #include <epgraph>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace epg;
 
   Scalar x = make_variable(3.0f);

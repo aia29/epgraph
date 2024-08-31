@@ -16,14 +16,15 @@
 #include <sstream>
 #include <vector>
 
-uint16_t count_words(std::string &str) {
+uint16_t count_words(std::string& str) {
   std::replace(str.begin(), str.end(), ',', ' ');
   std::stringstream stream(str);
-  return std::distance(std::istream_iterator<std::string>(stream),
-                       std::istream_iterator<std::string>());
+  return std::distance(
+      std::istream_iterator<std::string>(stream),
+      std::istream_iterator<std::string>());
 }
 
-std::vector<std::vector<float>> load_csv(const std::string &path) {
+std::vector<std::vector<float>> load_csv(const std::string& path) {
   std::ifstream indata;
   indata.open(path);
   std::string line;
@@ -50,7 +51,7 @@ std::vector<std::vector<float>> load_csv(const std::string &path) {
   return values;
 }
 
-void normalize(std::vector<std::vector<float>> &data) {
+void normalize(std::vector<std::vector<float>>& data) {
   assert(data.size() > 0);
   const int Ndata = data.size();
   const int Nvar = data.at(0).size() - 1;
@@ -76,7 +77,7 @@ void normalize(std::vector<std::vector<float>> &data) {
   }
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   auto rng = std::default_random_engine{};
 
   std::vector<std::vector<float>> data = load_csv("diabetes.csv");
@@ -89,8 +90,10 @@ int main(int argc, char *argv[]) {
   const uint16_t nvars = data.at(0).size() - 1;
 
   std::shuffle(std::begin(data), std::end(data), rng);
-  std::vector<std::vector<float>> test_data(data.begin(), data.begin() + third_size);
-  std::vector<std::vector<float>> train_data(data.begin() + third_size, data.end());
+  std::vector<std::vector<float>> test_data(
+      data.begin(), data.begin() + third_size);
+  std::vector<std::vector<float>> train_data(
+      data.begin() + third_size, data.end());
 
   float alpha = 0.01f;
   std::vector<epg::Scalar> w(nvars + 1);
@@ -116,8 +119,9 @@ int main(int argc, char *argv[]) {
         x[v]->value = train_data[sample][v];
       }
 
-      epg::Scalar loss = train_data[sample][nvars] * epg::log(fwd)
-                       + (1.0f - train_data[sample][nvars]) * epg::log(1.0f - fwd);
+      epg::Scalar loss
+          = train_data[sample][nvars] * epg::log(fwd)
+            + (1.0f - train_data[sample][nvars]) * epg::log(1.0f - fwd);
 
       zero_grad(loss);
       eval(loss);
@@ -140,7 +144,8 @@ int main(int argc, char *argv[]) {
     }
     eval(fwd);
 
-    err = err + std::fabs(((float)(fwd->value >= 0.55)) - test_data[sample][nvars]);
+    err = err
+          + std::fabs(((float)(fwd->value >= 0.55)) - test_data[sample][nvars]);
   }
   std::cout << "accuracy = "
             << 100.0f * (1.0f - ((float)err) / ((float)test_data.size()))

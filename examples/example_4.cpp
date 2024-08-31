@@ -14,7 +14,7 @@
 #include <iostream>
 #include <vector>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace epg;
   using Eigen::MatrixXf;
   using Eigen::VectorXf;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     x_eigen(0) = x->value;
     x_eigen(1) = y->value;
 
-    // Eigen's inverse for 2x2 matrix is efficient 
+    // Eigen's inverse for 2x2 matrix is efficient
     // enough to be usef here as is:
     x_eigen = x_eigen - J_eigen.inverse() * F_eigen;
 

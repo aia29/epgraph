@@ -14,11 +14,11 @@
 #include <iostream>
 
 float y_exact(float t) {
-  return (50.0f / 2501.0f) * (sin(t) + 50.0f * cos(t)) -
-         (2500.0f / 2501.0f) * exp(-50.0f * t);
+  return (50.0f / 2501.0f) * (sin(t) + 50.0f * cos(t))
+         - (2500.0f / 2501.0f) * exp(-50.0f * t);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace epg;
 
   const int N = 50;

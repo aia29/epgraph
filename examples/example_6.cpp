@@ -11,7 +11,7 @@
 #include <epgraph>
 #include <fstream>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace epg;
   using Eigen::MatrixXf;
   using Eigen::VectorXf;
@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
     Scalar y = make_variable(y0);
 
     // modpoint values
-    Scalar xm = 0.5f*(x + x0);
-    Scalar ym = 0.5f*(y + y0);
+    Scalar xm = 0.5f * (x + x0);
+    Scalar ym = 0.5f * (y + y0);
 
     Scalar F0 = (x - x0) - dt * ym;
     Scalar F1 = (y - y0) - dt * (mu * (1.0f - xm * xm) * ym - xm);

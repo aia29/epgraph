@@ -11,9 +11,11 @@
 #include <set>
 #include <string>
 
-float roundf(const float d) { return (round((int)(d * 10000.0))) / 10000.0; }
+float roundf(const float d) {
+  return (round((int)(d * 10000.0))) / 10000.0;
+}
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace epg;
 
   // Main variable:
