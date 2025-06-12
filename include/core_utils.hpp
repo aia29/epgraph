@@ -25,3 +25,13 @@ bool operator==(const float b, const epg::Scalar& a) {
   bool check_value = std::fabs(a.get_value() - b)< 1.0e-6;
   return check_value;
 }
+
+namespace epg {
+
+void eval(const Scalar& var) { var.eval(); }
+
+void diff(const Scalar& var) { var.diff(1); }
+
+void zero_grad(const Scalar& var) { var.zero_grad(); }
+
+} // namespace epg

@@ -16,14 +16,3 @@
 #include <ops_tanh.hpp>
 
 #include <core_utils.hpp>
-
-namespace epg {
-
-void eval(const Scalar& var) { var.eval(); }
-
-void diff(const Scalar& var) { var.diff(1); }
-
-void zero_grad(const Scalar& var) { var.zero_grad(); }
-
-} // namespace epg
-
