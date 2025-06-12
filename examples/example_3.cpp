@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
   using namespace epg;
 
   // Main variable:
-  Scalar x = make_variable();
+  Scalar x;
 
   // Equation:
   Scalar f = exp(-1.0f * x) * sin(5.0f * x) - 0.5f;
@@ -29,15 +29,15 @@ int main(int argc, char* argv[]) {
   float xmin = -4.0;
   float xmax = 1.0;
   for (float xi = xmin; xi <= xmax; xi = xi + 0.1) {
-    x->value = xi;
+    x = xi;
     for (int i = 0; i < 8; i++) {
       zero_grad(f);
       eval(f);
       diff(f);
-      x->value = x->value - f->value / x->grad;
+      x = x.get_value() - f.get_value() / x.get_grad();
     }
-    if (x->value >= xmin && x->value <= xmax) {
-      roots.insert(roundf(x->value));
+    if (x.get_value() >= xmin && x.get_value() <= xmax) {
+      roots.insert(roundf(x.get_value()));
     }
   }
 

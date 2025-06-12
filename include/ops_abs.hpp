@@ -7,13 +7,15 @@
 namespace epg {
 
 struct _Abs : public _Scalar {
-  Scalar var;
-  _Abs(const Scalar var_) { var = var_; }
-  void zero_grad() {
+  std::shared_ptr<_Scalar> var;
+  _Abs(const Scalar &input_var) {
+    var = input_var.get_ptr();
+  }
+  void zero_grad() override {
     grad = 0.0f;
     var->zero_grad();
   }
-  void eval() {
+  void eval() override {
     var->eval();
     value = std::fabs(var->value);
   }
@@ -23,8 +25,8 @@ struct _Abs : public _Scalar {
   }
 };
 
-Scalar abs(const Scalar x) {
-  Scalar var = std::make_shared<_Abs>(x);
+Scalar abs(const Scalar &x) {
+  std::shared_ptr<_Scalar> var(new _Abs(x));
   return var;
 }
 

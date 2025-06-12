@@ -35,8 +35,8 @@ int main(int argc, char* argv[]) {
   file << t0 << "," << x0 << "," << y0 << std::endl;
 
   for (int n = 0; n < N; n++) {
-    Scalar x = make_variable(x0);
-    Scalar y = make_variable(y0);
+    Scalar x = x0;
+    Scalar y = y0;
 
     // modpoint values
     Scalar xm = 0.5f * (x + x0);
@@ -52,8 +52,8 @@ int main(int argc, char* argv[]) {
       diff(F0);
 
       // And populate its Jacobian
-      J_eigen(0, 0) = x->grad;
-      J_eigen(0, 1) = y->grad;
+      J_eigen(0, 0) = x.get_grad();
+      J_eigen(0, 1) = y.get_grad();
 
       // Evaluate the second equation
       zero_grad(F1);
@@ -61,25 +61,25 @@ int main(int argc, char* argv[]) {
       diff(F1);
 
       // And populate its Jacobian
-      J_eigen(1, 0) = x->grad;
-      J_eigen(1, 1) = y->grad;
+      J_eigen(1, 0) = x.get_grad();
+      J_eigen(1, 1) = y.get_grad();
 
       // Populate vectors to do a Newton step
-      F_eigen(0) = F0->value;
-      F_eigen(1) = F1->value;
+      F_eigen(0) = F0.get_value();
+      F_eigen(1) = F1.get_value();
 
-      x_eigen(0) = x->value;
-      x_eigen(1) = y->value;
+      x_eigen(0) = x.get_value();
+      x_eigen(1) = y.get_value();
 
       x_eigen = x_eigen - J_eigen.inverse() * F_eigen;
 
       // Copy the intermediate solution back
-      x->value = x_eigen(0);
-      y->value = x_eigen(1);
+      x = x_eigen(0);
+      y = x_eigen(1);
     }
 
-    x0 = x->value;
-    y0 = y->value;
+    x0 = x.get_value();
+    y0 = y.get_value();
     t0 = t0 + dt;
 
     file << t0 << "," << x0 << "," << y0 << std::endl;

@@ -6,21 +6,25 @@
 namespace epg {
 
 struct _Cos : public _Scalar {
-  Scalar var;
-  _Cos(const Scalar var_) { var = var_; }
-  void zero_grad() {
+  std::shared_ptr<_Scalar> var;
+  _Cos(const Scalar &input_var) {
+    var = input_var.get_ptr();
+  }
+  void zero_grad() override {
     grad = 0.0f;
     var->zero_grad();
   }
-  void eval() {
+  void eval() override {
     var->eval();
     value = std::cos(var->value);
   }
-  void diff(const float seed) { var->diff(-std::sin(var->value) * seed); }
+  void diff(const float seed) {
+    var->diff(-std::sin(var->value) * seed);
+  }
 };
 
-Scalar cos(const Scalar x) {
-  Scalar var = std::make_shared<_Cos>(x);
+Scalar cos(const Scalar &x) {
+  std::shared_ptr<_Scalar> var(new _Cos(x));
   return var;
 }
 

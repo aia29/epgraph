@@ -19,8 +19,8 @@ int main(int argc, char* argv[]) {
   using Eigen::MatrixXf;
   using Eigen::VectorXf;
 
-  Scalar x = make_variable(1.0f);
-  Scalar y = make_variable(1.0f);
+  Scalar x = 1.0f;
+  Scalar y = 1.0f;
 
   Scalar f0 = exp(-exp(-(x + y))) - y * (1.0f + x * x);
   Scalar f1 = x * cos(y) + y * sin(x) - 0.5f;
@@ -37,8 +37,8 @@ int main(int argc, char* argv[]) {
     diff(f0);
 
     // And populate its Jacobian
-    J_eigen(0, 0) = x->grad;
-    J_eigen(0, 1) = y->grad;
+    J_eigen(0, 0) = x.get_grad();
+    J_eigen(0, 1) = y.get_grad();
 
     // Evaluate the second equation
     zero_grad(f1);
@@ -46,27 +46,27 @@ int main(int argc, char* argv[]) {
     diff(f1);
 
     // And populate its Jacobian
-    J_eigen(1, 0) = x->grad;
-    J_eigen(1, 1) = y->grad;
+    J_eigen(1, 0) = x.get_grad();
+    J_eigen(1, 1) = y.get_grad();
 
     // Populate vectors to do a Newton step
-    F_eigen(0) = f0->value;
-    F_eigen(1) = f1->value;
+    F_eigen(0) = f0.get_value();
+    F_eigen(1) = f1.get_value();
 
-    x_eigen(0) = x->value;
-    x_eigen(1) = y->value;
+    x_eigen(0) = x.get_value();
+    x_eigen(1) = y.get_value();
 
     // Eigen's inverse for 2x2 matrix is efficient
     // enough to be usef here as is:
     x_eigen = x_eigen - J_eigen.inverse() * F_eigen;
 
     // Copy the intermediate solution back
-    x->value = x_eigen(0);
-    y->value = x_eigen(1);
+    x = x_eigen(0);
+    y = x_eigen(1);
   }
 
-  std::cout << x->value << std::endl;
-  std::cout << y->value << std::endl;
+  std::cout << x.get_value() << std::endl;
+  std::cout << y.get_value() << std::endl;
 
   return 0;
 }

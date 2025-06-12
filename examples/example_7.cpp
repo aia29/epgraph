@@ -58,11 +58,11 @@ void solve_step(
   for (int iter = 0; iter < 8; iter++) {
     for (int i = 1; i < u.size() - 1; i++) {
       // modpoint values
-      epg::Scalar up = 0.5f * (u[i + 1] + uold[i + 1]->value);
-      epg::Scalar uc = 0.5f * (u[i] + uold[i]->value);
-      epg::Scalar um = 0.5f * (u[i - 1] + uold[i - 1]->value);
+      epg::Scalar up = 0.5f * (u[i + 1] + uold[i + 1].get_value());
+      epg::Scalar uc = 0.5f * (u[i] + uold[i].get_value());
+      epg::Scalar um = 0.5f * (u[i - 1] + uold[i - 1].get_value());
 
-      epg::Scalar EQ = (u[i] - uold[i]->value) / dt
+      epg::Scalar EQ = (u[i] - uold[i].get_value()) / dt
                        + uc * 0.5 * (up - um) * dx_inv
                        - mu * (up - 2.0 * uc + um) * dx2_inv;
 
@@ -72,14 +72,14 @@ void solve_step(
 
       // And populate its tridiagonal Jacobian
       if (i > 1) {
-        a_eigen(i - 1) = u[i - 1]->grad;
+        a_eigen(i - 1) = u[i - 1].get_grad();
       }
-      b_eigen(i - 1) = u[i]->grad;
+      b_eigen(i - 1) = u[i].get_grad();
       if (i < N) {
-        c_eigen(i) = u[i + 1]->grad;
+        c_eigen(i) = u[i + 1].get_grad();
       }
-      F_eigen(i - 1) = EQ->value;
-      u_eigen(i - 1) = u[i]->value;
+      F_eigen(i - 1) = EQ.get_value();
+      u_eigen(i - 1) = u[i].get_value();
     }
 
     solve_tridiagonal(
@@ -93,7 +93,7 @@ void solve_step(
     u_eigen = u_eigen - F_eigen;
   }
   for (int i = 1; i < u.size() - 1; i++) {
-    u[i]->value = u_eigen(i - 1);
+    u[i] = u_eigen(i - 1);
   }
 }
 
@@ -115,8 +115,8 @@ int main(int argc, char* argv[]) {
 
   for (int i = 0; i < Nx; i++) {
     const float x = i * dx;
-    u[i] = epg::make_variable(std::sin(x));
-    uold[i] = epg::make_variable(std::sin(x));
+    u[i] = std::sin(x);
+    uold[i] = std::sin(x);
   }
 
   std::ofstream file("burgers.csv");
@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
     if (n % (save_every / 2) == 0) {
       for (int i = 0; i < Nx; i++) {
         const float x = i * dx;
-        file << x << "," << u[i]->value << std::endl;
+        file << x << "," << u[i].get_value() << std::endl;
       }
     }
   }

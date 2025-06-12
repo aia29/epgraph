@@ -8,17 +8,16 @@ struct _Scalar {
   float value;
   float grad;
   bool is_const;
-  _Scalar(const bool is_const_ = false) {
+  _Scalar(const bool input_is_const = false) {
     value = 0.0f;
     grad = 0.0f;
-    is_const = is_const_;
+    is_const = input_is_const;
   }
-  _Scalar(const float value_, const bool is_const_ = false) {
-    value = value_;
+  _Scalar(const float input_value, const bool input_is_const = false) {
+    value = input_value;
     grad = 0.0f;
-    is_const = is_const_;
+    is_const = input_is_const;
   }
-
   virtual void zero_grad() { grad = 0.0f; }
   virtual void eval() {}
   virtual void diff(const float seed) {
@@ -28,26 +27,59 @@ struct _Scalar {
   }
 };
 
-typedef std::shared_ptr<_Scalar> Scalar;
 
-Scalar make_const() {
-  Scalar var = std::make_shared<_Scalar>(true);
-  return var;
-}
+struct Scalar {
+  Scalar(const float input_value = 0.0f, const bool input_is_const = false) {
+    scalar = std::make_shared<_Scalar>(input_value, input_is_const);
+  }
+  Scalar(const std::shared_ptr<_Scalar> &input_other) {
+    scalar = input_other;
+  }
+  void operator=(const std::shared_ptr<_Scalar> &input_other) {
+    scalar = input_other;
+  }
+  void operator=(const Scalar &input_other) {
+    scalar = input_other.scalar;
+  }
+  void operator=(const float input_value) {
+    if(scalar) {
+      scalar->value = input_value;
+    } else {
+      scalar = std::make_shared<_Scalar>(input_value);
+    }
+  }
+  void zero_grad() const {
+    scalar->zero_grad();
+  }
+  void eval() const {
+    scalar->eval();
+  }
+  void diff(const float input_seed) const {
+    scalar->diff(input_seed);
+  }
 
-Scalar make_const(const float val) {
-  Scalar var = std::make_shared<_Scalar>(val, true);
-  return var;
-}
+  float get_grad() const {
+    return scalar->grad;
+  }
 
-Scalar make_variable() {
-  Scalar var = std::make_shared<_Scalar>();
-  return var;
-}
+  float get_value() const {
+    return scalar->value;
+  }
 
-Scalar make_variable(const float val) {
-  Scalar var = std::make_shared<_Scalar>(val);
-  return var;
-}
+  bool is_const() const {
+    return scalar->is_const;
+  }
+
+  void set_value(const float input_val) const {
+    scalar->value = input_val;
+  }
+
+  std::shared_ptr<_Scalar> get_ptr() const {
+    return scalar;
+  }
+
+private:
+  std::shared_ptr<_Scalar> scalar;
+};
 
 } // namespace epg

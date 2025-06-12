@@ -98,15 +98,15 @@ int main(int argc, char* argv[]) {
   float alpha = 0.01f;
   std::vector<epg::Scalar> w(nvars + 1);
   for (int i = 0; i < nvars + 1; i++) {
-    w[i] = epg::make_variable();
+    w[i] = 0.0f;
   }
 
   std::vector<epg::Scalar> x(nvars);
   for (int i = 0; i < nvars; i++) {
-    x[i] = epg::make_const();
+    x[i] = epg::Scalar(0.0f, true);
   }
 
-  epg::Scalar fwd = epg::make_variable();
+  epg::Scalar fwd = 0.0f;
   for (int i = 0; i < nvars; i++) {
     fwd = fwd + x[i] * w[i];
   }
@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
     float total_loss = 0.0f;
     for (int sample = 0; sample < train_data.size(); sample++) {
       for (int v = 0; v < nvars; v++) {
-        x[v]->value = train_data[sample][v];
+        x[v] = train_data[sample][v];
       }
 
       epg::Scalar loss
@@ -127,11 +127,11 @@ int main(int argc, char* argv[]) {
       eval(loss);
       diff(loss);
 
-      assert(loss->value == loss->value);
-      total_loss = total_loss + loss->value;
+      assert(loss.get_value() == loss.get_value());
+      total_loss = total_loss + loss.get_value();
 
       for (int v = 0; v < nvars + 1; v++) {
-        w[v]->value = w[v]->value + alpha * w[v]->grad;
+        w[v] = w[v].get_value() + alpha * w[v].get_grad();
       }
     }
     std::cout << "total_loss = " << total_loss << std::endl;
@@ -140,12 +140,12 @@ int main(int argc, char* argv[]) {
   int err = 0;
   for (int sample = 0; sample < test_data.size(); sample++) {
     for (int v = 0; v < nvars; v++) {
-      x[v]->value = test_data[sample][v];
+      x[v] = test_data[sample][v];
     }
     eval(fwd);
 
     err = err
-          + std::fabs(((float)(fwd->value >= 0.55)) - test_data[sample][nvars]);
+          + std::fabs(((float)(fwd.get_value() >= 0.55)) - test_data[sample][nvars]);
   }
   std::cout << "accuracy = "
             << 100.0f * (1.0f - ((float)err) / ((float)test_data.size()))

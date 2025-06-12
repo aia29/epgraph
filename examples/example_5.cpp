@@ -28,17 +28,17 @@ int main(int argc, char* argv[]) {
   float y0 = 0.0f;
 
   for (int n = 0; n < N; n++) {
-    Scalar y = make_variable(y0);
+    Scalar y = y0;
     Scalar F = (y - y0) / dt + 50.0f * (0.5 * (y + y0) - cos(t0 + 0.5 * dt));
 
     for (int i = 0; i < 8; i++) {
       zero_grad(F);
       eval(F);
       diff(F);
-      y->value = y->value - F->value / y->grad;
+      y = y.get_value() - F.get_value() / y.get_grad();
     }
 
-    y0 = y->value;
+    y0 = y.get_value();
     t0 = t0 + dt;
 
     std::cout << "t = " << t0 << ", y_exact = " << y_exact(t0)

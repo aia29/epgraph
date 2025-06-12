@@ -6,17 +6,17 @@
 namespace epg {
 
 struct _Pow : public _Scalar {
-  Scalar var;
+  std::shared_ptr<_Scalar> var;
   float exponent;
-  _Pow(const Scalar var_, const float exponent_) {
-    var = var_;
-    exponent = exponent_;
+  _Pow(const Scalar &input_var, const float input_exponent) {
+    var = input_var.get_ptr();
+    exponent = input_exponent;
   }
-  void zero_grad() {
+  void zero_grad() override {
     grad = 0.0f;
     var->zero_grad();
   }
-  void eval() {
+  void eval() override {
     var->eval();
     value = std::pow(var->value, exponent);
   }
@@ -26,7 +26,7 @@ struct _Pow : public _Scalar {
 };
 
 Scalar pow(const Scalar x, const float exponent) {
-  Scalar var = std::make_shared<_Pow>(x, exponent);
+  std::shared_ptr<_Scalar> var(new _Pow(x, exponent));
   return var;
 }
 
