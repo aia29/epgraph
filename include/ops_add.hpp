@@ -1,5 +1,4 @@
 #pragma once
-#include<iostream>
 #include <core_variable.hpp>
 
 namespace epg {
