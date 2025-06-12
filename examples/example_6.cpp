@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
 
   const int N = std::round(25.0f / dt);
 
-  std::ofstream file("van_der_pol.csv");
+  std::ofstream file("out_example_6.csv");
   file << "t,x,y" << std::endl;
   file << t0 << "," << x0 << "," << y0 << std::endl;
 

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    data = np.genfromtxt("van_der_pol.csv", delimiter=",", skip_header=1)
+    data = np.genfromtxt("out_example_6.csv", delimiter=",", skip_header=1)
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
     fig.suptitle('Van der Pol oscillator')

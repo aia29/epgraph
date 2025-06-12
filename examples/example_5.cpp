@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////
 //
 // This example demonstrates usage of EPGraph for
-// a non-linear ODE:
+// a non-linear stiff ODE:
 //   dy/dt = -50*(y - cos(t)), y(0)=0
 // using an implicit midpoint method
 //
@@ -12,6 +12,7 @@
 
 #include <epgraph>
 #include <iostream>
+#include <fstream>
 
 float y_exact(float t) {
   return (50.0f / 2501.0f) * (sin(t) + 50.0f * cos(t))
@@ -27,6 +28,10 @@ int main(int argc, char* argv[]) {
   float t0 = 0.0f;
   float y0 = 0.0f;
 
+  std::ofstream file("out_example_5.csv");
+  file << "t,y_numeric,y_exact" << std::endl;
+  file << t0 << "," << y0 << "," << y_exact(t0) << std::endl;
+
   for (int n = 0; n < N; n++) {
     Scalar y = y0;
     Scalar F = (y - y0) / dt + 50.0f * (0.5 * (y + y0) - cos(t0 + 0.5 * dt));
@@ -41,8 +46,7 @@ int main(int argc, char* argv[]) {
     y0 = y.get_value();
     t0 = t0 + dt;
 
-    std::cout << "t = " << t0 << ", y_exact = " << y_exact(t0)
-              << ", y_numeric = " << y0 << std::endl;
+    file << t0 << "," << y0 << "," << y_exact(t0) << std::endl;
   }
 
   return 0;

@@ -119,7 +119,7 @@ int main(int argc, char* argv[]) {
     uold[i] = std::sin(x);
   }
 
-  std::ofstream file("burgers.csv");
+  std::ofstream file("out_example_7.csv");
   file << "x,u" << std::endl;
 
   for (int n = 0; n < Nt / 2; n++) {
