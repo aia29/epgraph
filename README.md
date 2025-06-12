@@ -11,16 +11,16 @@ EPGraph can be used for variety of projects including but not limited to machine
 int main(int argc, char *argv[]) {
   using namespace epg;
 
-  Scalar y = new_variable(2.0);
-  Scalar x = new_variable(3.0);
+  Scalar y = 2.0;
+  Scalar x = 3.0;
   Scalar z = x * (x + y) + y * y;
 
   eval(z);
   diff(z);
 
-  std::cout << "z = " << z->value << std::endl;
-  std::cout << "∂z/∂x = " << x->grad << ", "
-            << "∂z/∂y = " << y->grad << std::endl;
+  std::cout << "z = " << z.get_value() << std::endl;
+  std::cout << "∂z/∂x = " << x.get_grad() << ", "
+            << "∂z/∂y = " << y.get_grad() << std::endl;
 
   return 0;
 }
