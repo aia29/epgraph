@@ -29,18 +29,23 @@ struct _Scalar {
 
 
 struct Scalar {
+
   Scalar(const float input_value = 0.0f, const bool input_is_const = false) {
     scalar = std::make_shared<_Scalar>(input_value, input_is_const);
   }
+
   Scalar(const std::shared_ptr<_Scalar> &input_other) {
     scalar = input_other;
   }
+
   void operator=(const std::shared_ptr<_Scalar> &input_other) {
     scalar = input_other;
   }
+
   void operator=(const Scalar &input_other) {
     scalar = input_other.scalar;
   }
+
   void operator=(const float input_value) {
     if(scalar) {
       scalar->value = input_value;
@@ -48,12 +53,15 @@ struct Scalar {
       scalar = std::make_shared<_Scalar>(input_value);
     }
   }
+
   void zero_grad() const {
     scalar->zero_grad();
   }
+
   void eval() const {
     scalar->eval();
   }
+
   void diff(const float input_seed) const {
     scalar->diff(input_seed);
   }
@@ -68,6 +76,10 @@ struct Scalar {
 
   bool is_const() const {
     return scalar->is_const;
+  }
+
+  void make_const() const {
+    scalar->is_const = true;
   }
 
   void set_value(const float input_val) const {

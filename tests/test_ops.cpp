@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <cassert>
+#include <vector>
 
 void check(epg::Scalar &s, float expected_value, float expected_grad, bool expected_const = false) {
   bool check_value = std::fabs(s.get_value() - expected_value)< 1.0e-6;
@@ -229,6 +230,49 @@ void test_sigmoid() {
   std::cout<<"test_sigmoid: ok\n";
 }
 
+void test_summation() {
+  using namespace epg;
+  Scalar x = 0.0;
+  for(int i=0; i<10; i++) {
+    x = x + Scalar(1.0f * i);
+  }
+
+  zero_grad(x);
+  eval(x);
+  diff(x);
+
+  check(x, 45.0f, 0.0f);
+  std::cout<<"test_summation: ok\n";
+}
+
+void test_dot() {
+  using namespace epg;
+  int N = 4;
+  std::vector<Scalar> x(N);
+  std::vector<Scalar> y(N);
+  for(int i=0; i<N; i++) {
+    x[i] = 1.0f*i;
+    y[i] = 3.0f*i;
+  }
+
+  Scalar dot = 0.0f;
+  float dot_f = 0.0;
+  for(int i=0; i<N; i++) {
+    dot = dot + x[i] * y[i];
+    dot_f = dot_f + x[i].get_value() * y[i].get_value();
+  }
+
+  eval(dot);
+
+  check(dot, dot_f, 0.0f);
+  for(int i=0; i<N; i++) {
+    check(x[i], 1.0f*i, 0.0f);
+    check(y[i], 3.0f*i, 0.0f);
+  }
+
+  std::cout<<"test_dot: ok\n";
+}
+
 int main() {
   test_constructors();
   test_add();
@@ -243,4 +287,6 @@ int main() {
   test_sqrt();
   test_tanh();
   test_sigmoid();
+  test_summation();
+  test_dot();
 }

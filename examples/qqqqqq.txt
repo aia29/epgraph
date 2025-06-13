@@ -1,0 +1,543 @@
+example_8.cpp:94:15: error: redefinition of ‘std::ostream& operator<<(std::ostream&, const epg::Scalar&)’
+   94 | std::ostream& operator<< (std::ostream& stream, const epg::Scalar& s) {
+      |               ^~~~~~~~
+In file included from ../include/epgraph:18,
+                 from example_8.cpp:11:
+../include/core_utils.hpp:8:15: note: ‘std::ostream& operator<<(std::ostream&, const epg::Scalar&)’ previously defined here
+    8 | std::ostream& operator<< (std::ostream& stream, const epg::Scalar& s) {
+      |               ^~~~~~~~
+example_8.cpp: In function ‘void print(const std::vector<epg::Scalar>&)’:
+example_8.cpp:101:20: error: no match for ‘operator<<’ (operand types are ‘std::ostream’ {aka ‘std::basic_ostream<char>’} and ‘<unresolved overloaded function type>’)
+  101 |     std::cout<<w[i]<<std::end;
+      |     ~~~~~~~~~~~~~~~^~~~~~~~~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:108:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__ostream_type& (*)(std::basic_ostream<_CharT, _Traits>::__ostream_type&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  108 |       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:108:36: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘std::basic_ostream<char>::__ostream_type& (*)(std::basic_ostream<char>::__ostream_type&)’ {aka ‘std::basic_ostream<char>& (*)(std::basic_ostream<char>&)’}
+  108 |       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/11/ostream:117:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__ios_type& (*)(std::basic_ostream<_CharT, _Traits>::__ios_type&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>; std::basic_ostream<_CharT, _Traits>::__ios_type = std::basic_ios<char>]’
+  117 |       operator<<(__ios_type& (*__pf)(__ios_type&))
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:117:32: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘std::basic_ostream<char>::__ios_type& (*)(std::basic_ostream<char>::__ios_type&)’ {aka ‘std::basic_ios<char>& (*)(std::basic_ios<char>&)’}
+  117 |       operator<<(__ios_type& (*__pf)(__ios_type&))
+      |                  ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/usr/include/c++/11/ostream:127:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::ios_base& (*)(std::ios_base&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  127 |       operator<<(ios_base& (*__pf) (ios_base&))
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:127:30: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘std::ios_base& (*)(std::ios_base&)’
+  127 |       operator<<(ios_base& (*__pf) (ios_base&))
+      |                  ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/usr/include/c++/11/ostream:166:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  166 |       operator<<(long __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:166:23: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘long int’
+  166 |       operator<<(long __n)
+      |                  ~~~~~^~~
+/usr/include/c++/11/ostream:170:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  170 |       operator<<(unsigned long __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:170:32: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘long unsigned int’
+  170 |       operator<<(unsigned long __n)
+      |                  ~~~~~~~~~~~~~~^~~
+/usr/include/c++/11/ostream:174:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(bool) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  174 |       operator<<(bool __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:174:23: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘bool’
+  174 |       operator<<(bool __n)
+      |                  ~~~~~^~~
+In file included from /usr/include/c++/11/ostream:829,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/bits/ostream.tcc:91:5: note: candidate: ‘std::basic_ostream<_Ch, _Tr>& std::basic_ostream<_CharT, _Traits>::operator<<(short int) [with _CharT = char; _Traits = std::char_traits<char>]’
+   91 |     basic_ostream<_CharT, _Traits>::
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/11/bits/ostream.tcc:92:22: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘short int’
+   92 |     operator<<(short __n)
+      |                ~~~~~~^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:181:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(short unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  181 |       operator<<(unsigned short __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:181:33: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘short unsigned int’
+  181 |       operator<<(unsigned short __n)
+      |                  ~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/11/ostream:829,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/bits/ostream.tcc:105:5: note: candidate: ‘std::basic_ostream<_Ch, _Tr>& std::basic_ostream<_CharT, _Traits>::operator<<(int) [with _CharT = char; _Traits = std::char_traits<char>]’
+  105 |     basic_ostream<_CharT, _Traits>::
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/11/bits/ostream.tcc:106:20: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘int’
+  106 |     operator<<(int __n)
+      |                ~~~~^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:192:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  192 |       operator<<(unsigned int __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:192:31: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘unsigned int’
+  192 |       operator<<(unsigned int __n)
+      |                  ~~~~~~~~~~~~~^~~
+/usr/include/c++/11/ostream:201:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  201 |       operator<<(long long __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:201:28: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘long long int’
+  201 |       operator<<(long long __n)
+      |                  ~~~~~~~~~~^~~
+/usr/include/c++/11/ostream:205:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  205 |       operator<<(unsigned long long __n)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:205:37: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘long long unsigned int’
+  205 |       operator<<(unsigned long long __n)
+      |                  ~~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/11/ostream:220:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(double) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  220 |       operator<<(double __f)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:220:25: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘double’
+  220 |       operator<<(double __f)
+      |                  ~~~~~~~^~~
+/usr/include/c++/11/ostream:224:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(float) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  224 |       operator<<(float __f)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:224:24: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘float’
+  224 |       operator<<(float __f)
+      |                  ~~~~~~^~~
+/usr/include/c++/11/ostream:232:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long double) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  232 |       operator<<(long double __f)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:232:30: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘long double’
+  232 |       operator<<(long double __f)
+      |                  ~~~~~~~~~~~~^~~
+/usr/include/c++/11/ostream:245:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(const void*) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+  245 |       operator<<(const void* __p)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:245:30: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘const void*’
+  245 |       operator<<(const void* __p)
+      |                  ~~~~~~~~~~~~^~~
+/usr/include/c++/11/ostream:250:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::nullptr_t) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>; std::nullptr_t = std::nullptr_t]’
+  250 |       operator<<(nullptr_t)
+      |       ^~~~~~~~
+/usr/include/c++/11/ostream:250:18: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘std::nullptr_t’
+  250 |       operator<<(nullptr_t)
+      |                  ^~~~~~~~~
+In file included from /usr/include/c++/11/ostream:829,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/bits/ostream.tcc:119:5: note: candidate: ‘std::basic_ostream<_Ch, _Tr>& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__streambuf_type*) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__streambuf_type = std::basic_streambuf<char>]’
+  119 |     basic_ostream<_CharT, _Traits>::
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/11/bits/ostream.tcc:120:34: note:   no known conversion for argument 1 from ‘<unresolved overloaded function type>’ to ‘std::basic_ostream<char>::__streambuf_type*’ {aka ‘std::basic_streambuf<char>*’}
+  120 |     operator<<(__streambuf_type* __sbin)
+      |                ~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from /usr/include/c++/11/memory:77,
+                 from ../include/core_variable.hpp:3,
+                 from ../include/epgraph:3,
+                 from example_8.cpp:11:
+/usr/include/c++/11/bits/shared_ptr.h:70:5: note: candidate: ‘template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, const std::__shared_ptr<_Tp, _Lp>&)’
+   70 |     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/shared_ptr.h:70:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_Tp’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/bits/basic_string.h:48,
+                 from /usr/include/c++/11/string:55,
+                 from /usr/include/c++/11/bits/locale_classes.h:40,
+                 from /usr/include/c++/11/bits/ios_base.h:41,
+                 from /usr/include/c++/11/ios:42,
+                 from /usr/include/c++/11/ostream:38,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/string_view:667:5: note: candidate: ‘std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, std::basic_string_view<_CharT, _Traits>) [with _CharT = char; _Traits = std::char_traits<char>]’
+  667 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/string_view:668:50: note:   no known conversion for argument 2 from ‘<unresolved overloaded function type>’ to ‘std::basic_string_view<char>’
+  668 |                basic_string_view<_CharT,_Traits> __str)
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from /usr/include/c++/11/string:55,
+                 from /usr/include/c++/11/bits/locale_classes.h:40,
+                 from /usr/include/c++/11/bits/ios_base.h:41,
+                 from /usr/include/c++/11/ios:42,
+                 from /usr/include/c++/11/ostream:38,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/bits/basic_string.h:6531:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6531 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/basic_string.h:6531:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_Alloc’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/bits/ios_base.h:46,
+                 from /usr/include/c++/11/ios:42,
+                 from /usr/include/c++/11/ostream:38,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/system_error:279:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, const std::error_code&)’
+  279 |     operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __e)
+      |     ^~~~~~~~
+/usr/include/c++/11/system_error:279:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘const std::error_code&’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:513:5: note: candidate: ‘std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, _CharT) [with _CharT = char; _Traits = std::char_traits<char>]’
+  513 |     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:513:62: note:   no known conversion for argument 2 from ‘<unresolved overloaded function type>’ to ‘char’
+  513 |     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+      |                                                       ~~~~~~~^~~
+/usr/include/c++/11/ostream:518:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, char)’
+  518 |     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:518:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘char’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:524:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)’
+  524 |     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:524:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘char’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:530:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)’
+  530 |     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:530:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘signed char’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:535:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)’
+  535 |     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:535:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘unsigned char’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:594:5: note: candidate: ‘std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>]’
+  594 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:594:69: note:   no known conversion for argument 2 from ‘<unresolved overloaded function type>’ to ‘const char*’
+  594 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+      |                                                       ~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/11/ostream:829,
+                 from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/bits/ostream.tcc:321:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, const char*)’
+  321 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘const char*’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:611:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)’
+  611 |     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:611:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘const char*’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:624:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)’
+  624 |     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:624:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘const signed char*’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:629:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)’
+  629 |     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:629:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘const unsigned char*’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/core_utils.hpp:4,
+                 from ../include/epgraph:18,
+                 from example_8.cpp:11:
+/usr/include/c++/11/ostream:750:5: note: candidate: ‘template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&)’
+  750 |     operator<<(_Ostream&& __os, const _Tp& __x)
+      |     ^~~~~~~~
+/usr/include/c++/11/ostream:750:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_Tp’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:49,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.h:1309:5: note: candidate: ‘template<class _RandomNumberEngine, long unsigned int __w, class _UIntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::independent_bits_engine<_RandomNumberEngine, __w, _UIntType>&)’
+ 1309 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.h:1309:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RandomNumberEngine’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:901:5: note: candidate: ‘template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_int_distribution<_IntType>&)’
+  901 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:901:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_IntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:959:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_real_distribution<_IntType>&)’
+  959 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:959:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2144:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::cauchy_distribution<_RealType>&)’
+ 2144 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2144:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1020:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_Ch, _Tr>& std::operator<<(std::basic_ostream<_Ch, _Tr>&, const std::bernoulli_distribution&)’
+ 1020 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1020:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   cannot convert ‘std::end’ (type ‘<unresolved overloaded function type>’) to type ‘const std::bernoulli_distribution&’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1101:5: note: candidate: ‘template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::geometric_distribution<_IntType>&)’
+ 1101 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1101:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_IntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1753:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::exponential_distribution<_RealType>&)’
+ 1753 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1753:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2538:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::weibull_distribution<_RealType>&)’
+ 2538 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2538:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2612:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::extreme_value_distribution<_RealType>&)’
+ 2612 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2612:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:154:5: note: candidate: ‘template<class _UIntType, _UIntType __a, _UIntType __c, _UIntType __m, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::linear_congruential_engine<_UIntType, __a, __c, __m>&)’
+  154 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:154:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_UIntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:474:5: note: candidate: ‘template<class _UIntType1, long unsigned int __w1, long unsigned int __n1, long unsigned int __m1, long unsigned int __r1, _UIntType1 __a1, long unsigned int __u1, _UIntType1 __d1, long unsigned int __s1, _UIntType1 __b1, long unsigned int __t1, _UIntType1 __c1, long unsigned int __l1, _UIntType1 __f1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f>&)’
+  474 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:474:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_UIntType1’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:628:5: note: candidate: ‘template<class _UIntType, long unsigned int __w, long unsigned int __s, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::subtract_with_carry_engine<_UIntType, __w, __s, __r>&)’
+  628 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:628:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_UIntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:696:5: note: candidate: ‘template<class _RandomNumberEngine, long unsigned int __p, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discard_block_engine<_RandomNumberEngine, __p, __r>&)’
+  696 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:696:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RandomNumberEngine’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:857:5: note: candidate: ‘template<class _RandomNumberEngine, long unsigned int __k, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::shuffle_order_engine<_RandomNumberEngine, __k>&)’
+  857 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:857:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RandomNumberEngine’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1215:5: note: candidate: ‘template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::negative_binomial_distribution<_IntType>&)’
+ 1215 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1215:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_IntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1425:5: note: candidate: ‘template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::poisson_distribution<_IntType>&)’
+ 1425 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1425:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_IntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1691:5: note: candidate: ‘template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::binomial_distribution<_IntType>&)’
+ 1691 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1691:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_IntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1919:5: note: candidate: ‘template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::normal_distribution<_RealType>&)’
+ 1919 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1919:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType1’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:1986:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::lognormal_distribution<_RealType>&)’
+ 1986 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:1986:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2058:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::chi_squared_distribution<_RealType>&)’
+ 2058 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2058:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2219:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::fisher_f_distribution<_RealType>&)’
+ 2219 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2219:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2293:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::student_t_distribution<_RealType>&)’
+ 2293 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2293:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2462:5: note: candidate: ‘template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::gamma_distribution<_RealType>&)’
+ 2462 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2462:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType1’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2748:5: note: candidate: ‘template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discrete_distribution<_IntType>&)’
+ 2748 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2748:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_IntType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:2970:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_constant_distribution<_RealType>&)’
+ 2970 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:2970:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from /usr/include/c++/11/random:51,
+                 from example_8.cpp:15:
+/usr/include/c++/11/bits/random.tcc:3176:5: note: candidate: ‘template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_linear_distribution<_RealType>&)’
+ 3176 |     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/11/bits/random.tcc:3176:5: note:   template argument deduction/substitution failed:
+example_8.cpp:101:27: note:   couldn’t deduce template parameter ‘_RealType’
+  101 |     std::cout<<w[i]<<std::end;
+      |                           ^~~
+In file included from ../include/epgraph:18,
+                 from example_8.cpp:11:
+../include/core_utils.hpp:8:15: note: candidate: ‘std::ostream& operator<<(std::ostream&, const epg::Scalar&)’
+    8 | std::ostream& operator<< (std::ostream& stream, const epg::Scalar& s) {
+      |               ^~~~~~~~
+../include/core_utils.hpp:8:68: note:   no known conversion for argument 2 from ‘<unresolved overloaded function type>’ to ‘const epg::Scalar&’
+    8 | std::ostream& operator<< (std::ostream& stream, const epg::Scalar& s) {
+      |                                                 ~~~~~~~~~~~~~~~~~~~^

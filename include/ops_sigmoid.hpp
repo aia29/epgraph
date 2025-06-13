@@ -6,7 +6,11 @@
 namespace epg {
 
 float sigmoid(const float x) {
-  return 1.0f / (1.0f + std::exp(0.0f-x));
+  if (x > 0.0f) {
+    return 1.0f / (1.0f + std::exp(-x));
+  } else {
+    return std::exp(x) / (1.0f + std::exp(x));
+  }
 }
 
 float sigmoid_prime(const float x) {

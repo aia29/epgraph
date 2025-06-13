@@ -8,13 +8,18 @@
 //
 ///////////////////////////////////////////////////////////////////////
 
-#include <algorithm>
 #include <epgraph>
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <random>
 #include <sstream>
+#include <iterator>
 #include <vector>
+
+float randu(const float a, const float b) {
+  return (((float)rand()) / (RAND_MAX + 1.0f)) * (b - a) + a;
+}
 
 uint16_t count_words(std::string& str) {
   std::replace(str.begin(), str.end(), ',', ' ');
@@ -77,6 +82,15 @@ void normalize(std::vector<std::vector<float>>& data) {
   }
 }
 
+epg::Scalar linear_layer(const std::vector<epg::Scalar> &w, const std::vector<float> &x) {
+  const int nvars = x.size();
+  epg::Scalar fwd = 0.0f;
+  for (int i = 0; i < nvars; i++) {
+    fwd = fwd + x[i] * w[i];
+  }
+  return fwd + w[nvars];
+}
+
 int main(int argc, char* argv[]) {
   auto rng = std::default_random_engine{};
 
@@ -95,61 +109,61 @@ int main(int argc, char* argv[]) {
   std::vector<std::vector<float>> train_data(
       data.begin() + third_size, data.end());
 
-  float alpha = 0.01f;
+  float alpha = 0.005f;
+  std::vector<float> x(nvars, 0.0f);
   std::vector<epg::Scalar> w(nvars + 1);
   for (int i = 0; i < nvars + 1; i++) {
-    w[i] = 0.0f;
+    w[i] = randu(-1.0f, 1.0f);
   }
 
-  std::vector<epg::Scalar> x(nvars);
-  for (int i = 0; i < nvars; i++) {
-    x[i] = epg::Scalar(0.0f, true);
-  }
-
-  epg::Scalar fwd = 0.0f;
-  for (int i = 0; i < nvars; i++) {
-    fwd = fwd + x[i] * w[i];
-  }
-  fwd = epg::sigmoid(fwd + w[nvars]);
-
-  for (int iter = 0; iter < 10; iter++) {
-    float total_loss = 0.0f;
+  for (int iter = 0; iter < 25; iter++) {
+    epg::Scalar loss = 0.0f;
     for (int sample = 0; sample < train_data.size(); sample++) {
       for (int v = 0; v < nvars; v++) {
         x[v] = train_data[sample][v];
       }
-
-      epg::Scalar loss
-          = train_data[sample][nvars] * epg::log(fwd)
-            + (1.0f - train_data[sample][nvars]) * epg::log(1.0f - fwd);
-
-      zero_grad(loss);
-      eval(loss);
-      diff(loss);
-
-      assert(loss.get_value() == loss.get_value());
-      total_loss = total_loss + loss.get_value();
-
-      for (int v = 0; v < nvars + 1; v++) {
-        w[v] = w[v].get_value() + alpha * w[v].get_grad();
-      }
+      const float yk = train_data[sample][nvars];
+      epg::Scalar fwd = epg::sigmoid(linear_layer(w, x));
+      loss = loss - yk * epg::log(fwd)
+                  - (1.0f - yk) * epg::log(1.0f - fwd);
     }
-    std::cout << "total_loss = " << total_loss << std::endl;
+    assert(loss.get_value() == loss.get_value());
+    zero_grad(loss);
+    eval(loss);
+    diff(loss);
+
+    for (int v = 0; v < nvars + 1; v++) {
+      w[v] = w[v].get_value() - alpha * w[v].get_grad();
+    }
+    std::cout << "loss = " << loss.get_value() << std::endl;
   }
 
-  int err = 0;
+  int TP = 0;
+  int TN = 0;
+  int FP = 0;
+  int FN = 0;
   for (int sample = 0; sample < test_data.size(); sample++) {
     for (int v = 0; v < nvars; v++) {
       x[v] = test_data[sample][v];
     }
-    eval(fwd);
 
-    err = err
-          + std::fabs(((float)(fwd.get_value() >= 0.55)) - test_data[sample][nvars]);
+    const float yk = test_data[sample][nvars];
+    epg::Scalar fwd = epg::sigmoid(linear_layer(w, x));
+    eval(fwd);
+    bool prediction = (fwd.get_value() >= 0.45);
+    bool truth = (yk >= 0.45);
+
+    TP = TP + ((prediction) && (truth));
+    TN = TN + ((!prediction) && (!truth));
+    FP = FP + ((prediction) && (!truth));
+    FN = FN + ((!prediction) && (truth));
   }
-  std::cout << "accuracy = "
-            << 100.0f * (1.0f - ((float)err) / ((float)test_data.size()))
-            << std::endl;
+
+  std::cout<<"TP = " << TP << std::endl;
+  std::cout<<"TN = " << TN << std::endl;
+  std::cout<<"FP = " << FP << std::endl;
+  std::cout<<"FN = " << FN << std::endl;
+  std::cout<<"out of = " << test_data.size() << " samples." <<std::endl;
 
   return 0;
 }
