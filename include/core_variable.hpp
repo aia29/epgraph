@@ -84,6 +84,7 @@ struct Scalar {
 
   void make_const() const {
     scalar->is_const = true;
+    scalar->grad = 0.0f;
   }
 
   void set_value(const float input_val) const {
