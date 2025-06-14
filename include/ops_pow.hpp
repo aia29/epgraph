@@ -25,7 +25,7 @@ struct _Pow : public _Scalar {
   }
 };
 
-Scalar pow(const Scalar x, const float exponent) {
+Scalar pow(const Scalar& x, const float exponent) {
   std::shared_ptr<_Scalar> var(new _Pow(x, exponent));
   return var;
 }

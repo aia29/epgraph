@@ -23,7 +23,7 @@ struct _Log : public _Scalar {
   }
 };
 
-Scalar log(const Scalar x) {
+Scalar log(const Scalar& x) {
   std::shared_ptr<_Scalar> var(new _Log(x));
   return var;
 }
