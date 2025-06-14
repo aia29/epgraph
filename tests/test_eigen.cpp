@@ -84,7 +84,7 @@ void test_dot() {
     check(y_eigen[i], 3.0f * i, 0.0f);
   }
 
-  std::cout << "test_dot: ok\n";
+  std::cout << "test_dot: ok" << std::endl;
 }
 
 int main() {

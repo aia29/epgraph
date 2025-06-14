@@ -54,6 +54,10 @@ struct Scalar {
     }
   }
 
+  explicit operator float() {
+    return scalar->value;
+  }
+
   void zero_grad() const {
     scalar->zero_grad();
   }

@@ -27,13 +27,13 @@ void copy(float* s_basic, const std::vector<epg::Scalar>& s_epg) {
 
 void print_grad(const std::vector<epg::Scalar>& s_epg, const float* s_basic) {
   for (auto i = 0; i < s_epg.size(); i++) {
-    std::cout << s_epg[i].get_grad() << " " << s_basic[i] << '\n';
+    std::cout << s_epg[i].get_grad() << " " << s_basic[i] << std::endl;
   }
 }
 
 void print_value(const std::vector<epg::Scalar>& s_epg, const float* s_basic) {
   for (auto i = 0; i < s_epg.size(); i++) {
-    std::cout << s_epg[i].get_value() << " " << s_basic[i] << '\n';
+    std::cout << s_epg[i].get_value() << " " << s_basic[i] << std::endl;
   }
 }
 

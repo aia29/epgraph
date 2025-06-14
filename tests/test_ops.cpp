@@ -7,7 +7,7 @@
 void check(
     epg::Scalar& s,
     float expected_value,
-    float expected_grad,
+    float expected_grad = 0.0f,
     bool expected_const = false) {
   bool check_value = std::fabs(s.get_value() - expected_value) < 1.0e-6;
   bool check_grad = std::fabs(s.get_grad() - expected_grad) < 1.0e-6;
@@ -36,7 +36,24 @@ void test_constructors() {
   check(b, 1.0f, 0.0f, true);
   check(c, 3.0f, 0.0f);
 
-  std::cout << "test_constructors: ok\n";
+  std::cout << "test_constructors: ok" << std::endl;
+}
+
+void test_type_conversion() {
+  using namespace epg;
+  Scalar a = 5.0f;
+  Scalar b = 2.0f;
+  Scalar c = a * b;
+
+  float a_float = (float)a;
+  float b_float = (float)b;
+  float c_float = (float)(a * b);
+
+  check(a, a_float);
+  check(b, b_float);
+  check(c, c_float);
+
+  std::cout << "test_type_conversion: ok" << std::endl;
 }
 
 void test_add() {
@@ -52,7 +69,7 @@ void test_add() {
   check(y, 5.0f, 2.0f);
   check(z, 12.0f, 0.0f);
 
-  std::cout << "test_add: ok\n";
+  std::cout << "test_add: ok" << std::endl;
 }
 
 void test_mul() {
@@ -69,7 +86,7 @@ void test_mul() {
   check(y, 5.0f, 10.0f);
   check(z, 27.0f, 0.0f);
 
-  std::cout << "test_mul: ok\n";
+  std::cout << "test_mul: ok" << std::endl;
 }
 
 void test_div() {
@@ -86,7 +103,7 @@ void test_div() {
   check(y, 5.0f, -0.08);
   check(z, 0.4f, 0.0f);
 
-  std::cout << "test_div: ok\n";
+  std::cout << "test_div: ok" << std::endl;
 }
 
 void test_sin() {
@@ -103,7 +120,7 @@ void test_sin() {
   check(y, 0.5f, 2.0f * std::cos(0.5));
   check(z, 2.0f * std::sin(0.5), 0.0f);
 
-  std::cout << "test_sin: ok\n";
+  std::cout << "test_sin: ok" << std::endl;
 }
 
 void test_cos() {
@@ -120,7 +137,7 @@ void test_cos() {
   check(y, 0.5f, -2.0f * std::sin(0.5));
   check(z, 2.0f * std::cos(0.5), 0.0f);
 
-  std::cout << "test_cos: ok\n";
+  std::cout << "test_cos: ok" << std::endl;
 }
 
 void test_abs() {
@@ -137,7 +154,7 @@ void test_abs() {
   check(y, -0.5f, -2.0f);
   check(z, 1.0f, 0.0f);
 
-  std::cout << "test_abs: ok\n";
+  std::cout << "test_abs: ok" << std::endl;
 }
 
 void test_exp() {
@@ -154,7 +171,7 @@ void test_exp() {
   check(y, -0.5f, 2.0f * std::exp(-0.5f));
   check(z, 2.0f * std::exp(-0.5f), 0.0f);
 
-  std::cout << "test_exp: ok\n";
+  std::cout << "test_exp: ok" << std::endl;
 }
 
 void test_pow() {
@@ -171,7 +188,7 @@ void test_pow() {
   check(y, -0.5f, -2.0f);
   check(z, 0.5f, 0.0f);
 
-  std::cout << "test_pow: ok\n";
+  std::cout << "test_pow: ok" << std::endl;
 }
 
 void test_log() {
@@ -188,7 +205,7 @@ void test_log() {
   check(y, -0.5f, std::log(2.0f));
   check(z, -0.5 * std::log(2.0f), 0.0f);
 
-  std::cout << "test_log: ok\n";
+  std::cout << "test_log: ok" << std::endl;
 }
 
 void test_sqrt() {
@@ -205,7 +222,7 @@ void test_sqrt() {
   check(y, -0.5f, std::sqrt(2.0f));
   check(z, -0.5 * std::sqrt(2.0f), 0.0f);
 
-  std::cout << "test_sqrt: ok\n";
+  std::cout << "test_sqrt: ok" << std::endl;
 }
 
 void test_tanh() {
@@ -222,7 +239,7 @@ void test_tanh() {
   check(y, -0.5f, std::tanh(2.0f));
   check(z, -0.5 * std::tanh(2.0f), 0.0f);
 
-  std::cout << "test_tanh: ok\n";
+  std::cout << "test_tanh: ok" << std::endl;
 }
 
 void test_sigmoid() {
@@ -239,7 +256,7 @@ void test_sigmoid() {
   check(y, -0.5f, sigmoid(2.0f));
   check(z, -0.5 * sigmoid(2.0f), 0.0f);
 
-  std::cout << "test_sigmoid: ok\n";
+  std::cout << "test_sigmoid: ok" << std::endl;
 }
 
 void test_summation() {
@@ -254,7 +271,7 @@ void test_summation() {
   diff(x);
 
   check(x, 45.0f, 0.0f);
-  std::cout << "test_summation: ok\n";
+  std::cout << "test_summation: ok" << std::endl;
 }
 
 void test_dot() {
@@ -296,11 +313,12 @@ void test_dot() {
     check(y[i], 3.0f * i, 0.0f);
   }
 
-  std::cout << "test_dot: ok\n";
+  std::cout << "test_dot: ok" << std::endl;
 }
 
 int main() {
   test_constructors();
+  test_type_conversion();
   test_add();
   test_mul();
   test_div();

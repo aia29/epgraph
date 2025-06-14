@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
   assert(data.size() > 0);
   normalize(data);
 
-  std::cout << data.size() << " " << data.at(0).size() << '\n';
+  std::cout << data.size() << " " << data.at(0).size() << std::endl;
 
   const uint16_t third_size = data.size() / 3;
   const uint16_t nvars = data.at(0).size() - 1;
