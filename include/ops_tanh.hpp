@@ -1,17 +1,17 @@
 #pragma once
 
-#include <cmath>
 #include <core_variable.hpp>
+#include <cmath>
 
 namespace epg {
 
 float tanh_prime(const float x) {
-  return 1.0f - std::tanh(x)*std::tanh(x);
+  return 1.0f - std::tanh(x) * std::tanh(x);
 }
 
 struct _Tanh : public _Scalar {
   std::shared_ptr<_Scalar> var;
-  _Tanh(const Scalar &input_var) {
+  _Tanh(const Scalar& input_var) {
     var = input_var.get_ptr();
   }
   void zero_grad() override {

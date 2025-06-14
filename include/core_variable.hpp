@@ -18,36 +18,36 @@ struct _Scalar {
     grad = 0.0f;
     is_const = input_is_const;
   }
-  virtual void zero_grad() { grad = 0.0f; }
+  virtual void zero_grad() {
+    grad = 0.0f;
+  }
   virtual void eval() {}
   virtual void diff(const float seed) {
-    if(is_const != true) {
+    if (is_const != true) {
       grad += seed;
     }
   }
 };
 
-
 struct Scalar {
-
   Scalar(const float input_value = 0.0f, const bool input_is_const = false) {
     scalar = std::make_shared<_Scalar>(input_value, input_is_const);
   }
 
-  Scalar(const std::shared_ptr<_Scalar> &input_other) {
+  Scalar(const std::shared_ptr<_Scalar>& input_other) {
     scalar = input_other;
   }
 
-  void operator=(const std::shared_ptr<_Scalar> &input_other) {
+  void operator=(const std::shared_ptr<_Scalar>& input_other) {
     scalar = input_other;
   }
 
-  void operator=(const Scalar &input_other) {
+  void operator=(const Scalar& input_other) {
     scalar = input_other.scalar;
   }
 
   void operator=(const float input_value) {
-    if(scalar) {
+    if (scalar) {
       scalar->value = input_value;
     } else {
       scalar = std::make_shared<_Scalar>(input_value);
@@ -90,7 +90,7 @@ struct Scalar {
     return scalar;
   }
 
-private:
+ private:
   std::shared_ptr<_Scalar> scalar;
 };
 

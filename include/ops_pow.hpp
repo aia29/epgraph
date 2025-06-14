@@ -1,14 +1,14 @@
 #pragma once
 
-#include <cmath>
 #include <core_variable.hpp>
+#include <cmath>
 
 namespace epg {
 
 struct _Pow : public _Scalar {
   std::shared_ptr<_Scalar> var;
   float exponent;
-  _Pow(const Scalar &input_var, const float input_exponent) {
+  _Pow(const Scalar& input_var, const float input_exponent) {
     var = input_var.get_ptr();
     exponent = input_exponent;
   }

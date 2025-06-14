@@ -1,13 +1,13 @@
 #pragma once
 
-#include <cmath>
 #include <core_variable.hpp>
+#include <cmath>
 
 namespace epg {
 
 struct _Log : public _Scalar {
   std::shared_ptr<_Scalar> var;
-  _Log(const Scalar &input_var) {
+  _Log(const Scalar& input_var) {
     var = input_var.get_ptr();
   }
   void zero_grad() override {

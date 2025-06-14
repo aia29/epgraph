@@ -1,7 +1,7 @@
 #pragma once
 
-#include <cmath>
 #include <core_variable.hpp>
+#include <cmath>
 
 namespace epg {
 
@@ -14,12 +14,12 @@ float sigmoid(const float x) {
 }
 
 float sigmoid_prime(const float x) {
-  return sigmoid(x)*(1.0f - sigmoid(x));
+  return sigmoid(x) * (1.0f - sigmoid(x));
 }
 
 struct _Sigmoid : public _Scalar {
   std::shared_ptr<_Scalar> var;
-  _Sigmoid(const Scalar &input_var) {
+  _Sigmoid(const Scalar& input_var) {
     var = input_var.get_ptr();
   }
   void zero_grad() override {
@@ -35,7 +35,7 @@ struct _Sigmoid : public _Scalar {
   }
 };
 
-Scalar sigmoid(const Scalar &x) {
+Scalar sigmoid(const Scalar& x) {
   std::shared_ptr<_Scalar> var(new _Sigmoid(x));
   return var;
 }

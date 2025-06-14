@@ -6,7 +6,7 @@ namespace epg {
 struct _Add : public _Scalar {
   std::shared_ptr<_Scalar> var1;
   std::shared_ptr<_Scalar> var2;
-  _Add(const Scalar &input_var1, const Scalar &input_var2) {
+  _Add(const Scalar& input_var1, const Scalar& input_var2) {
     var1 = input_var1.get_ptr();
     var2 = input_var2.get_ptr();
   }
@@ -26,22 +26,22 @@ struct _Add : public _Scalar {
   }
 };
 
-Scalar add(const Scalar &x, const Scalar &y) {
+Scalar add(const Scalar& x, const Scalar& y) {
   std::shared_ptr<_Scalar> var(new _Add(x, y));
   return Scalar(var);
 }
 
-Scalar operator+(const Scalar &x, const Scalar &y) {
+Scalar operator+(const Scalar& x, const Scalar& y) {
   return add(x, y);
 }
-Scalar operator+(const Scalar &x, const float y) {
+Scalar operator+(const Scalar& x, const float y) {
   return add(x, Scalar(y, true));
 }
-Scalar operator+(const float x, const Scalar &y) {
+Scalar operator+(const float x, const Scalar& y) {
   return add(Scalar(x, true), y);
 }
 
-Scalar& operator+=(Scalar &x, const Scalar &y) {
+Scalar& operator+=(Scalar& x, const Scalar& y) {
   x = x + y;
   return x;
 }

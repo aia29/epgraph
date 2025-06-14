@@ -11,8 +11,8 @@
 /////////////////////////////////////////////////
 
 #include <epgraph>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 float y_exact(float t) {
   return (50.0f / 2501.0f) * (sin(t) + 50.0f * cos(t))

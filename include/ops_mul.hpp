@@ -1,14 +1,14 @@
 #pragma once
 
-#include <cmath>
 #include <core_variable.hpp>
+#include <cmath>
 
 namespace epg {
 
 struct _Mul : public _Scalar {
   std::shared_ptr<_Scalar> var1;
   std::shared_ptr<_Scalar> var2;
-  _Mul(const Scalar &input_var1, const Scalar &input_var2) {
+  _Mul(const Scalar& input_var1, const Scalar& input_var2) {
     var1 = input_var1.get_ptr();
     var2 = input_var2.get_ptr();
   }
@@ -28,16 +28,18 @@ struct _Mul : public _Scalar {
   }
 };
 
-Scalar mul(const Scalar &x, const Scalar &y) {
+Scalar mul(const Scalar& x, const Scalar& y) {
   std::shared_ptr<_Scalar> var(new _Mul(x, y));
   return var;
 }
 
-Scalar operator*(const Scalar &x, const Scalar &y) { return mul(x, y); }
-Scalar operator*(const Scalar &x, const float y) {
+Scalar operator*(const Scalar& x, const Scalar& y) {
+  return mul(x, y);
+}
+Scalar operator*(const Scalar& x, const float y) {
   return mul(x, Scalar(y, true));
 }
-Scalar operator*(const float x, const Scalar &y) {
+Scalar operator*(const float x, const Scalar& y) {
   return mul(Scalar(x, true), y);
 }
 

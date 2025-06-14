@@ -1,14 +1,14 @@
 #pragma once
 
+#include <core_variable.hpp>
 #include <cassert>
 #include <cmath>
-#include <core_variable.hpp>
 
 namespace epg {
 
 struct _Abs : public _Scalar {
   std::shared_ptr<_Scalar> var;
-  _Abs(const Scalar &input_var) {
+  _Abs(const Scalar& input_var) {
     var = input_var.get_ptr();
   }
   void zero_grad() override {
@@ -25,7 +25,7 @@ struct _Abs : public _Scalar {
   }
 };
 
-Scalar abs(const Scalar &x) {
+Scalar abs(const Scalar& x) {
   std::shared_ptr<_Scalar> var(new _Abs(x));
   return var;
 }

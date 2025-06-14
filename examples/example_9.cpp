@@ -4,36 +4,36 @@
 //
 ///////////////////////////////////////////////////////////////////////
 
+#include <Eigen/Core>
 #include <epgraph>
 #include <iostream>
 #include <vector>
-#include <Eigen/Core>
 
 float randu(const float a, const float b) {
   return (((float)rand()) / (RAND_MAX + 1.0f)) * (b - a) + a;
 }
 
-void fill(std::vector<epg::Scalar> &s) {
-  for(auto i=0; i<s.size(); i++) {
+void fill(std::vector<epg::Scalar>& s) {
+  for (auto i = 0; i < s.size(); i++) {
     s[i] = randu(-10.0f, 10.0f);
   }
 }
 
-void copy(float *s_basic, const std::vector<epg::Scalar> &s_epg) {
-  for(auto i=0; i<s_epg.size(); i++) {
+void copy(float* s_basic, const std::vector<epg::Scalar>& s_epg) {
+  for (auto i = 0; i < s_epg.size(); i++) {
     s_basic[i] = s_epg[i].get_value();
   }
 }
 
-void print_grad(const std::vector<epg::Scalar> &s_epg, const float *s_basic) {
-  for(auto i=0; i<s_epg.size(); i++) {
-    std::cout<<s_epg[i].get_grad()<<" "<<s_basic[i]<<'\n';
+void print_grad(const std::vector<epg::Scalar>& s_epg, const float* s_basic) {
+  for (auto i = 0; i < s_epg.size(); i++) {
+    std::cout << s_epg[i].get_grad() << " " << s_basic[i] << '\n';
   }
 }
 
-void print_value(const std::vector<epg::Scalar> &s_epg, const float *s_basic) {
-  for(auto i=0; i<s_epg.size(); i++) {
-    std::cout<<s_epg[i].get_value()<<" "<<s_basic[i]<<'\n';
+void print_value(const std::vector<epg::Scalar>& s_epg, const float* s_basic) {
+  for (auto i = 0; i < s_epg.size(); i++) {
+    std::cout << s_epg[i].get_value() << " " << s_basic[i] << '\n';
   }
 }
 
@@ -65,14 +65,14 @@ int main() {
   epgMap W_eigen = epgMap(W_vector.data(), Q, M);
   epgMap Z_eigen = epgMap(Z_vector.data(), Q, P);
 
-  Z_eigen = W_eigen * (A_eigen.transpose() * X_eigen  + B_eigen);
+  Z_eigen = W_eigen * (A_eigen.transpose() * X_eigen + B_eigen);
 
-  for(auto c = Z_eigen.data(); c < Z_eigen.data() + Z_eigen.size(); c++) {
+  for (auto c = Z_eigen.data(); c < Z_eigen.data() + Z_eigen.size(); c++) {
     zero_grad(*c);
     eval(*c);
   }
 
-  for(auto c = Z_eigen.data(); c < Z_eigen.data() + Z_eigen.size(); c++) {
+  for (auto c = Z_eigen.data(); c < Z_eigen.data() + Z_eigen.size(); c++) {
     diff(*c);
   }
 

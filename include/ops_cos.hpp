@@ -1,13 +1,13 @@
 #pragma once
 
-#include <cmath>
 #include <core_variable.hpp>
+#include <cmath>
 
 namespace epg {
 
 struct _Cos : public _Scalar {
   std::shared_ptr<_Scalar> var;
-  _Cos(const Scalar &input_var) {
+  _Cos(const Scalar& input_var) {
     var = input_var.get_ptr();
   }
   void zero_grad() override {
@@ -23,7 +23,7 @@ struct _Cos : public _Scalar {
   }
 };
 
-Scalar cos(const Scalar &x) {
+Scalar cos(const Scalar& x) {
   std::shared_ptr<_Scalar> var(new _Cos(x));
   return var;
 }

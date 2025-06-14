@@ -8,13 +8,13 @@
 //
 ///////////////////////////////////////////////////////////////////////
 
-#include <epgraph>
 #include <algorithm>
+#include <epgraph>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <random>
 #include <sstream>
-#include <iterator>
 #include <vector>
 
 float randu(const float a, const float b) {
@@ -82,7 +82,9 @@ void normalize(std::vector<std::vector<float>>& data) {
   }
 }
 
-epg::Scalar linear_layer(const std::vector<epg::Scalar> &w, const std::vector<float> &x) {
+epg::Scalar linear_layer(
+    const std::vector<epg::Scalar>& w,
+    const std::vector<float>& x) {
   const int nvars = x.size();
   epg::Scalar fwd = 0.0f;
   for (int i = 0; i < nvars; i++) {
@@ -124,8 +126,7 @@ int main(int argc, char* argv[]) {
       }
       const float yk = train_data[sample][nvars];
       epg::Scalar fwd = epg::sigmoid(linear_layer(w, x));
-      loss = loss - yk * epg::log(fwd)
-                  - (1.0f - yk) * epg::log(1.0f - fwd);
+      loss = loss - yk * epg::log(fwd) - (1.0f - yk) * epg::log(1.0f - fwd);
     }
     assert(loss.get_value() == loss.get_value());
     zero_grad(loss);
@@ -159,11 +160,11 @@ int main(int argc, char* argv[]) {
     FN = FN + ((!prediction) && (truth));
   }
 
-  std::cout<<"TP = " << TP << std::endl;
-  std::cout<<"TN = " << TN << std::endl;
-  std::cout<<"FP = " << FP << std::endl;
-  std::cout<<"FN = " << FN << std::endl;
-  std::cout<<"out of = " << test_data.size() << " samples." <<std::endl;
+  std::cout << "TP = " << TP << std::endl;
+  std::cout << "TN = " << TN << std::endl;
+  std::cout << "FP = " << FP << std::endl;
+  std::cout << "FN = " << FN << std::endl;
+  std::cout << "out of = " << test_data.size() << " samples." << std::endl;
 
   return 0;
 }
