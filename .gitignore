@@ -32,7 +32,8 @@
 *.app
 
 # Build paths
-examples/build/
+build
 
 # Third party packages
+third_party
 eigen-*
