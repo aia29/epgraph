@@ -92,4 +92,5 @@ int main() {
 
   // TODO: Need to check differentiation. I have a suspicion,
   //       than the differentiation in wrong.
+  //       Use https://www.matrixcalculus.org/
 }

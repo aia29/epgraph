@@ -1,13 +1,25 @@
+#include <cassert>
+#include <cmath>
 #include <epgraph>
 #include <iostream>
-#include <cmath>
-#include <cassert>
 #include <vector>
 
-void check(epg::Scalar &s, float expected_value, float expected_grad, bool expected_const = false) {
-  bool check_value = std::fabs(s.get_value() - expected_value)< 1.0e-6;
+void check(
+    epg::Scalar& s,
+    float expected_value,
+    float expected_grad,
+    bool expected_const = false) {
+  bool check_value = std::fabs(s.get_value() - expected_value) < 1.0e-6;
   bool check_grad = std::fabs(s.get_grad() - expected_grad) < 1.0e-6;
   bool check_const = s.is_const() == expected_const;
+  if (!check_value) {
+    std::cout << "expected_value = " << expected_value << ", but got "
+              << s.get_value() << std::endl;
+  }
+  if (!check_grad) {
+    std::cout << "expected_grad = " << expected_grad << ", but got "
+              << s.get_grad() << std::endl;
+  }
   assert(check_value);
   assert(check_grad);
   assert(check_const);
@@ -24,7 +36,7 @@ void test_constructors() {
   check(b, 1.0f, 0.0f, true);
   check(c, 3.0f, 0.0f);
 
-  std::cout<<"test_constructors: ok\n";
+  std::cout << "test_constructors: ok\n";
 }
 
 void test_add() {
@@ -40,7 +52,7 @@ void test_add() {
   check(y, 5.0f, 2.0f);
   check(z, 12.0f, 0.0f);
 
-  std::cout<<"test_add: ok\n";
+  std::cout << "test_add: ok\n";
 }
 
 void test_mul() {
@@ -57,7 +69,7 @@ void test_mul() {
   check(y, 5.0f, 10.0f);
   check(z, 27.0f, 0.0f);
 
-  std::cout<<"test_mul: ok\n";
+  std::cout << "test_mul: ok\n";
 }
 
 void test_div() {
@@ -74,7 +86,7 @@ void test_div() {
   check(y, 5.0f, -0.08);
   check(z, 0.4f, 0.0f);
 
-  std::cout<<"test_div: ok\n";
+  std::cout << "test_div: ok\n";
 }
 
 void test_sin() {
@@ -88,10 +100,10 @@ void test_sin() {
   diff(z);
 
   check(x, 2.0f, std::sin(0.5));
-  check(y, 0.5f, 2.0f*std::cos(0.5));
-  check(z, 2.0f*std::sin(0.5), 0.0f);
+  check(y, 0.5f, 2.0f * std::cos(0.5));
+  check(z, 2.0f * std::sin(0.5), 0.0f);
 
-  std::cout<<"test_sin: ok\n";
+  std::cout << "test_sin: ok\n";
 }
 
 void test_cos() {
@@ -105,10 +117,10 @@ void test_cos() {
   diff(z);
 
   check(x, 2.0f, std::cos(0.5));
-  check(y, 0.5f, -2.0f*std::sin(0.5));
-  check(z, 2.0f*std::cos(0.5), 0.0f);
+  check(y, 0.5f, -2.0f * std::sin(0.5));
+  check(z, 2.0f * std::cos(0.5), 0.0f);
 
-  std::cout<<"test_cos: ok\n";
+  std::cout << "test_cos: ok\n";
 }
 
 void test_abs() {
@@ -125,7 +137,7 @@ void test_abs() {
   check(y, -0.5f, -2.0f);
   check(z, 1.0f, 0.0f);
 
-  std::cout<<"test_abs: ok\n";
+  std::cout << "test_abs: ok\n";
 }
 
 void test_exp() {
@@ -139,10 +151,10 @@ void test_exp() {
   diff(z);
 
   check(x, 2.0f, std::exp(-0.5f));
-  check(y, -0.5f, 2.0f*std::exp(-0.5f));
-  check(z, 2.0f*std::exp(-0.5f), 0.0f);
+  check(y, -0.5f, 2.0f * std::exp(-0.5f));
+  check(z, 2.0f * std::exp(-0.5f), 0.0f);
 
-  std::cout<<"test_exp: ok\n";
+  std::cout << "test_exp: ok\n";
 }
 
 void test_pow() {
@@ -159,7 +171,7 @@ void test_pow() {
   check(y, -0.5f, -2.0f);
   check(z, 0.5f, 0.0f);
 
-  std::cout<<"test_pow: ok\n";
+  std::cout << "test_pow: ok\n";
 }
 
 void test_log() {
@@ -176,7 +188,7 @@ void test_log() {
   check(y, -0.5f, std::log(2.0f));
   check(z, -0.5 * std::log(2.0f), 0.0f);
 
-  std::cout<<"test_log: ok\n";
+  std::cout << "test_log: ok\n";
 }
 
 void test_sqrt() {
@@ -189,11 +201,11 @@ void test_sqrt() {
   eval(z);
   diff(z);
 
-  check(x, 2.0f, -0.25f/std::sqrt(2.0f));
+  check(x, 2.0f, -0.25f / std::sqrt(2.0f));
   check(y, -0.5f, std::sqrt(2.0f));
   check(z, -0.5 * std::sqrt(2.0f), 0.0f);
 
-  std::cout<<"test_sqrt: ok\n";
+  std::cout << "test_sqrt: ok\n";
 }
 
 void test_tanh() {
@@ -210,7 +222,7 @@ void test_tanh() {
   check(y, -0.5f, std::tanh(2.0f));
   check(z, -0.5 * std::tanh(2.0f), 0.0f);
 
-  std::cout<<"test_tanh: ok\n";
+  std::cout << "test_tanh: ok\n";
 }
 
 void test_sigmoid() {
@@ -227,13 +239,13 @@ void test_sigmoid() {
   check(y, -0.5f, sigmoid(2.0f));
   check(z, -0.5 * sigmoid(2.0f), 0.0f);
 
-  std::cout<<"test_sigmoid: ok\n";
+  std::cout << "test_sigmoid: ok\n";
 }
 
 void test_summation() {
   using namespace epg;
   Scalar x = 0.0;
-  for(int i=0; i<10; i++) {
+  for (int i = 0; i < 10; i++) {
     x = x + Scalar(1.0f * i);
   }
 
@@ -242,7 +254,7 @@ void test_summation() {
   diff(x);
 
   check(x, 45.0f, 0.0f);
-  std::cout<<"test_summation: ok\n";
+  std::cout << "test_summation: ok\n";
 }
 
 void test_dot() {
@@ -250,14 +262,14 @@ void test_dot() {
   int N = 4;
   std::vector<Scalar> x(N);
   std::vector<Scalar> y(N);
-  for(int i=0; i<N; i++) {
-    x[i] = 1.0f*i;
-    y[i] = 3.0f*i;
+  for (int i = 0; i < N; i++) {
+    x[i] = 1.0f * i;
+    y[i] = 3.0f * i;
   }
 
   Scalar dot = 0.0f;
-  float dot_f = 0.0;
-  for(int i=0; i<N; i++) {
+  float dot_f = 0.0f;
+  for (int i = 0; i < N; i++) {
     dot = dot + x[i] * y[i];
     dot_f = dot_f + x[i].get_value() * y[i].get_value();
   }
@@ -265,12 +277,26 @@ void test_dot() {
   eval(dot);
 
   check(dot, dot_f, 0.0f);
-  for(int i=0; i<N; i++) {
-    check(x[i], 1.0f*i, 0.0f);
-    check(y[i], 3.0f*i, 0.0f);
+  for (int i = 0; i < N; i++) {
+    check(x[i], 1.0f * i, 0.0f);
+    check(y[i], 3.0f * i, 0.0f);
   }
 
-  std::cout<<"test_dot: ok\n";
+  diff(dot);
+  check(dot, dot_f, 0.0f);
+  for (int i = 0; i < N; i++) {
+    check(x[i], 1.0f * i, y[i].get_value());
+    check(y[i], 3.0f * i, x[i].get_value());
+  }
+
+  zero_grad(dot);
+  check(dot, dot_f, 0.0f);
+  for (int i = 0; i < N; i++) {
+    check(x[i], 1.0f * i, 0.0f);
+    check(y[i], 3.0f * i, 0.0f);
+  }
+
+  std::cout << "test_dot: ok\n";
 }
 
 int main() {
