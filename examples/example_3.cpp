@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  std::cout << "Numerical solution:" << std::endl;
+  std::cout << "Numerical solution the help of EPGraph:" << std::endl;
   for (const float root : roots) {
     std::cout << root << std::endl;
   }

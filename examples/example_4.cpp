@@ -64,9 +64,10 @@ int main(int argc, char* argv[]) {
     x = x_eigen(0);
     y = x_eigen(1);
   }
-
-  std::cout << x.get_value() << std::endl;
-  std::cout << y.get_value() << std::endl;
+  std::cout << "Roots calculated with the help of EPGraph:" << std::endl;
+  std::cout << x.get_value() << ", " << y.get_value() << std::endl;
+  std::cout << "Roots calculated with the help of Matlab:" << std::endl;
+  std::cout << "0.3532, 0.6061" << std::endl;
 
   return 0;
 }
