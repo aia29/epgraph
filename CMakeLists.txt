@@ -34,8 +34,10 @@ foreach(FILE ${TEST_FILES} ${EXAMPLE_FILES})
     string(REPLACE "${CMAKE_SOURCE_DIR}/examples/" "" TARGET_NAME "${TARGET_NAME}")
     string(REPLACE "${CMAKE_SOURCE_DIR}/tests/" "" TARGET_NAME "${TARGET_NAME}")
     add_executable(${TARGET_NAME} ${FILE})
-    target_include_directories(${TARGET_NAME} PRIVATE
+    target_include_directories(
+        ${TARGET_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/include
-        ${CMAKE_SOURCE_DIR}/third_party/eigen-3.4.0)
+        ${CMAKE_SOURCE_DIR}/third_party/eigen-3.4.0
+    )
     add_dependencies(executables ${TARGET_NAME})
 endforeach()
