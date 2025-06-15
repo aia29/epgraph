@@ -31,8 +31,9 @@
 *.out
 *.app
 
-# Build paths
+# Build&Dev paths
 build
+.cache
 
 # Third party packages
 third_party

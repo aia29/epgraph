@@ -17,7 +17,8 @@ execute_process(
 )
 
 # Download Eigen
-if(DOWNLOAD_EIGEN)
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/third_party/eigen-3.4.0")
+    message(WARNING "Downloading and extracting Eigen to ${CMAKE_SOURCE_DIR}/third_party/eigen-3.4.0")
     execute_process(
         COMMAND bash -c "mkdir -p third_party &&
                          cd third_party &&
