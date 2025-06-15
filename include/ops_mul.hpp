@@ -29,7 +29,7 @@ struct _Mul : public _Scalar {
 };
 
 Scalar mul(const Scalar& x, const Scalar& y) {
-  std::shared_ptr<_Scalar> var(new _Mul(x, y));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Mul>(x, y);
   return var;
 }
 

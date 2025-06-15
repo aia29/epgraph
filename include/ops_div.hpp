@@ -29,7 +29,7 @@ struct _Div : public _Scalar {
 };
 
 Scalar div(const Scalar& x, const Scalar& y) {
-  std::shared_ptr<_Scalar> var(new _Div(x, y));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Div>(x, y);
   return var;
 }
 

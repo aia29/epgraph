@@ -28,7 +28,7 @@ struct _Sub : public _Scalar {
 };
 
 Scalar sub(const Scalar& x, const Scalar& y) {
-  std::shared_ptr<_Scalar> var(new _Sub(x, y));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Sub>(x, y);
   return var;
 }
 

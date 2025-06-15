@@ -24,7 +24,7 @@ struct _Cos : public _Scalar {
 };
 
 Scalar cos(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Cos(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Cos>(x);
   return var;
 }
 

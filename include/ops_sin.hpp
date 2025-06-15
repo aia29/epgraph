@@ -24,7 +24,7 @@ struct _Sin : public _Scalar {
 };
 
 Scalar sin(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Sin(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Sin>(x);
   return var;
 }
 

@@ -24,7 +24,7 @@ struct _Exp : public _Scalar {
 };
 
 Scalar exp(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Exp(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Exp>(x);
   return var;
 }
 

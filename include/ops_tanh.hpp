@@ -28,7 +28,7 @@ struct _Tanh : public _Scalar {
 };
 
 Scalar tanh(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Tanh(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Tanh>(x);
   return var;
 }
 

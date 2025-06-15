@@ -26,7 +26,7 @@ struct _Abs : public _Scalar {
 };
 
 Scalar abs(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Abs(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Abs>(x);
   return var;
 }
 

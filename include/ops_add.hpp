@@ -27,7 +27,7 @@ struct _Add : public _Scalar {
 };
 
 Scalar add(const Scalar& x, const Scalar& y) {
-  std::shared_ptr<_Scalar> var(new _Add(x, y));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Add>(x, y);
   return Scalar(var);
 }
 

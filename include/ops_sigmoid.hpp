@@ -36,7 +36,7 @@ struct _Sigmoid : public _Scalar {
 };
 
 Scalar sigmoid(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Sigmoid(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Sigmoid>(x);
   return var;
 }
 

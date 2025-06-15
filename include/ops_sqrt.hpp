@@ -24,7 +24,7 @@ struct _Sqrt : public _Scalar {
 };
 
 Scalar sqrt(const Scalar& x) {
-  std::shared_ptr<_Scalar> var(new _Sqrt(x));
+  std::shared_ptr<_Scalar> var = std::make_shared<_Sqrt>(x);
   return var;
 }
 
